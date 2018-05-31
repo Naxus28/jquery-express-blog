@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog Api</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="bower_components/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
+    <script src="js/index.js"></script>
+  </head>
+  <body>    
+    <header>
+      <h1>Blog Api</h1>
+    </header>
+    <section class="the-pit">
+      <h2>Create a new blog post</h2>
+
+      <div class="error">
+        <!-- error generated via jquery -->
+      </div>
+      
+      <form action="#" class="blog-form"  onsubmit="return false;">
+        <div class="input-wrapper">
+          <input name="author" placeholder="Author">
+          <input name="title" placeholder="Title">
+        </div>
+
+        <div class="input-wrapper">
+          <textarea name="content" placeholder="Write your post"></textarea>
+        </div>
+
+        <button type="submit">Create Post</button>
+      </form>
+
+      <div class="blog-posts">
+        <!-- posts retrieved via jquery -->
+      </div>
+
+    </section>
+  </body>
+</html>
+

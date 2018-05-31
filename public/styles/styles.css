@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  background: #cedede;
+  padding: 20px;
+}
+.the-pit {
+  width: 70%;
+  margin: auto;
+}
+textarea {
+  resize: none;
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+.input-wrapper {
+  display: flex;
+  margin-bottom: 10px;
+}
+input {
+  width: 50%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+}
+input:first-child{
+  margin-right: 10px;
+}
+button {
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+}
+button[type="submit"] {
+  width: 30%;
+  height: 50px;
+  padding: 5px;
+  background: #5c7c94;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+button.update,
+button.delete {
+  width: 10%;
+}
+button.update {
+  background: #5c7c94;
+  margin-right: 10px;
+}
+button.delete {
+  background: #f16a5d;
+}
+form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+h1,
+h2,
+h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+h2 {
+  font-size: 26px;
+}
+h3 {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+p {
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+span {
+  font-style: italic;
+  font-size: 14px;
+}
+.blog-posts {
+  margin-top: 50px;
+}
+.blog-posts__post {
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.blog-posts__post-header {
+  display: flex;
+}
+.blog-posts__post-header h3 {
+  width: 80%;
+}
+
+.blog-posts__post-content {
+  margin-bottom: 15px;
+  line-height: 22px;
+}
+.blog-posts__post-footer {
+  display: flex;
+}
+.blog-posts__post-footer span {
+  width: 50%;
+}
+.blog-posts__post-footer span:nth-child(2) {
+  text-align: right
+}
+.error {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  background: #f16a5d;
+  color: white;
+}
+
+

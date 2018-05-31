@@ -1,0 +1,34 @@
+{
+  "name": "16-blog-api-challenge",
+  "version": "1.0.0",
+  "description": "To close out this lesson, you'll build a CRUD API for a blogging platform.",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_PATH=server PORT=8080 nodemon index --exec babel-node -e js",
+    "test": "NODE_PATH=server PORT=5000 mocha --require babel-register --exit"
+  },
+  "author": "Gabriel Ferraz <gabrielferraz27@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.5",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-env": "^2.4.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "express": "^4.16.3",
+    "mocha": "^5.2.0",
+    "morgan": "^1.9.0",
+    "uuid": "^3.2.1"
+  }
+}
