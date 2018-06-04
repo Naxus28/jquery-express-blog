@@ -19,6 +19,7 @@ blogRoutes(app);
 
 errorHandlerMiddleware(app);
 
+
 app.listen(PORT, () =>
   console.log(`Server listening at ${URL}`));
 
