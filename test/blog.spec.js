@@ -11,7 +11,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 
-import app from '../index';
+import app from '../server/index';
 
 const should = chai.should(); // provides shorter syntax than "expect"
 const endPoint = '/blog';

@@ -4,8 +4,12 @@
   "description": "To close out this lesson, you'll build a CRUD API for a blogging platform.",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_PATH=server PORT=8080 nodemon index --exec babel-node -e js",
-    "test": "NODE_PATH=server PORT=5000 mocha --require babel-register --exit"
+    "clean": "rm -rf dist",
+    "build-server": "babel server -d dist -s --presets env,stage-0",
+    "build": "npm run clean && npm run build-server",
+    "start": "npm run build && node dist/index",
+    "start:dev": "PORT=8080 nodemon server/index --exec babel-node",
+    "test": "PORT=5000 mocha --require babel-register --exit"
   },
   "author": "Gabriel Ferraz <gabrielferraz27@gmail.com>",
   "license": "MIT",

@@ -183,9 +183,6 @@ const submitUpdate = () => {
         error: handleError
       });
     });
-
-
-  });
 }
 
 
