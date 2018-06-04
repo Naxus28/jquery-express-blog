@@ -1,7 +1,7 @@
 {
-  "name": "16-blog-api-challenge",
+  "name": "jquery-express-blog",
   "version": "1.0.0",
-  "description": "To close out this lesson, you'll build a CRUD API for a blogging platform.",
+  "description": "A blog built with a jquery client and an express API",
   "main": "index.js",
   "scripts": {
     "clean:server": "rm -rf dist",
