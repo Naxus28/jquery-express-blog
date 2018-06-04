@@ -1,0 +1,1 @@
+web: node index --exec babel-node -e js
