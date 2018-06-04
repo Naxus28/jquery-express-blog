@@ -1,1 +1,1 @@
-web: node index --exec babel-node -e js
+web: node dist/index.js
