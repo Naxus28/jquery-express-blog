@@ -13,6 +13,9 @@ const URL = process.env.NODE_ENV === 'production'
               ? `https://frozen-shore-58330.herokuapp.com`
               : `http://localhost:${PORT}`;
 
+console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
+console.log('URL: ', URL);
+
 appMiddleware(app, express);
 
 blogRoutes(app);
