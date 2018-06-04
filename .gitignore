@@ -1,3 +1,7 @@
 node_modules
 dist
+<<<<<<< HEAD
 public/vendors
+=======
+public/bower_components
+>>>>>>> 9441ab859b5a0ba1c60fab868437887e49f683ab
