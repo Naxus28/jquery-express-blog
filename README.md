@@ -1,4 +1,4 @@
-# Blog app 
+# jQuery-Express Blog app 
 
 The front end app uses html, css, and jquery. The API is built with node-express.
 
