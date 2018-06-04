@@ -3,7 +3,7 @@ const URL = 'http://localhost:8080/blog';
 // BUILD POST HTML
 const buildPostsHTML = blogPosts => ( 
   blogPosts.map(post => (
-    `<div class="blog-posts__post">
+    `<div class="blog-posts__post" id=${post.id}>
       <div class="blog-posts__post-header">
         <h3 class="blog-posts__post-title">${post.title}</h3>
         <button class="update">Update</button>
@@ -80,24 +80,6 @@ const getBlogPosts = () => {
 
 // POST
 const postBlogPosts = () => {
-  ajaxHelper('POST', (posts, $error, $form) => {
-    $('.blog-posts').prepend(buildPostsHTML([posts])); // pass the single post as an array so we can map over it on 'buildPostsHTML'
-    $error.hide();
-    $form[0].reset();
-  });
-};
-
-// PUT
-const updateBlogPost = () => {
-  // ajaxHelper('PUT', (posts, $error, $form) => {
-    // $('.blog-posts').prepend(buildPostsHTML([posts])); // pass the single post as an array so we can map over it on 'buildPostsHTML'
-    // $error.hide();
-    // $form[0].reset();
-  // });
-};
-
-// USED FOR POST AND PUT
-const ajaxHelper = (method, successFn) => {
   $('.blog-form').on('submit', e => {
     e.preventDefault();
 
@@ -111,24 +93,101 @@ const ajaxHelper = (method, successFn) => {
           ? incompleteFields
           : formatIncompleteFieldsErrorMsg(incompleteFields);
 
-      handleError(`Please enter "${formattedFields}" before submitting the form.`);
+      handleError(`Please enter ${formattedFields} before submitting the form.`);
       return;
      }
 
      // POST
     $.ajax({
       url: URL,
-      method,
+      method: 'POST',
       dataType: 'json',
       headers: {
         'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
       },
       data: JSON.stringify(data), // need to stringify to send as json
-      success: posts => successFn(posts, $error, $form),
+      success: posts => {
+        $('.blog-posts').prepend(buildPostsHTML([posts])); // pass the single post as an array so we can map over it on 'buildPostsHTML'
+        $error.hide();
+        $form[0].reset();
+      },
       error: handleError
     });
   });
 };
+
+// PUT
+const updateBlogPost = () => {
+  $('body').on('click', '.update', e => {
+
+    // get values from fields
+    let postParent = $(e.target).closest('.blog-posts__post'),
+        id = postParent.attr('id'),
+        title = postParent.find('.blog-posts__post-title').text(),
+        author = postParent.find('.blog-posts__post-footer .author').text(),
+        content = postParent.find('.blog-posts__post-content').text();
+
+    // create form
+    let inlineForm =  
+    `<form action="#" class="blog-update"  onsubmit="return false;" id=${id}>
+      <div class="input-wrapper">
+        <input name="author" placeholder="Author" value="${author}">
+        <input name="title" placeholder="Title" value="${title}">
+      </div>
+
+      <div class="input-wrapper">
+        <textarea name="content" placeholder="Write your post">${content}</textarea>
+      </div>
+
+      <button class="update-post" type="submit">Update Post</button>
+      <button class="cancel-update">Cancel</button>
+    </form>`;
+
+    postParent.html(inlineForm);
+  });
+};
+
+const submitUpdate = () => {
+  $('body').on('submit', '.blog-update', e => {
+    event.preventDefault();
+
+      let $form = $(e.target),
+          id = $form.attr('id'),
+          $error = $('.error'),
+          data = $form.serializeObject();
+          incompleteFields = fieldsIncomplete(data);
+
+       if (incompleteFields.length) {
+        let formattedFields = incompleteFields.length === 1
+            ? incompleteFields
+            : formatIncompleteFieldsErrorMsg(incompleteFields);
+
+        handleError(`Please enter ${formattedFields} before submitting the form.`);
+        return;
+       }
+
+       // POST
+      $.ajax({
+        url: `${URL}\/${id}`,
+        method: 'PUT',
+        dataType: 'json',
+        headers: {
+          'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
+        },
+        data: JSON.stringify(data), // need to stringify to send as json
+        success: posts => {
+          $('.blog-posts').prepend(buildPostsHTML([posts])); // pass the single post as an array so we can map over it on 'buildPostsHTML'
+          $error.hide();
+          $form[0].reset();
+        },
+        error: handleError
+      });
+    });
+
+
+  });
+}
+
 
 // INIT
 const init = () => {
