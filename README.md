@@ -7,6 +7,8 @@ To create unit tests for the http layer we use [`mocha`](https://mochajs.org/), 
 
 ## package.json scripts
 
+> Run `npm install` to install dependencies before executing these scripts
+
 
 `npm start` builds and serves the prod app
 
