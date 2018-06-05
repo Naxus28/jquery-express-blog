@@ -4,6 +4,8 @@
 html,
 body {
   background: #cedede;
+}
+body {
   padding: 20px;
 }
 .the-pit {
@@ -141,6 +143,65 @@ span {
   font-size: 16px;
   background: #f16a5d;
   color: white;
+}
+
+@media screen and (max-width: 1050px) {
+  .the-pit {
+    width: 90%;
+  }
+
+  button.update,
+  button.delete {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .the-pit {
+    width: 95%;
+  }
+  .input-wrapper {
+    display: block;
+  }
+  .input-wrapper input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  button.create-post  {
+    width: 50%;
+  }
+  form.blog-update {
+   margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+ .blog-posts__post-header h3 {
+  width: 75%;
+  font-size: 18px;
+ } 
+
+ .blog-posts__post-header button {
+  width: 25%;
+ }
+
+ button.submit-update,
+ button.cancel-update  {
+  width: 40%;
+ }
+}
+
+@media screen and (max-width: 360px) {
+ .blog-posts__post-header h3 {
+  width: 70%;
+  margin-right: 5px;
+  font-size: 16px;
+ } 
+
+ .blog-posts__post-header button {
+  width: 30%;
+  font-size: 12px;
+ }
 }
 
 
