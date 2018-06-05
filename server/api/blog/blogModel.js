@@ -33,9 +33,10 @@ export default {
   },
   delete(id) {
     const postIndex = posts.findIndex(post => post.id === id);
-    
+
     if (postIndex > -1) {
       posts.splice(postIndex, 1);
+      return { message: `post id=${id} was succesfully deleted`};
     } else {
       throw new StorageException(`Can't delete item \`${id}\` because it doesn't exist.`, 400);
     }

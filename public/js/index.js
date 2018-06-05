@@ -117,7 +117,8 @@ const postBlogPosts = () => {
   });
 };
 
-// PUT
+
+// UPDATE
 const updateBlogPost = () => {
   $('body').on('click', '.update', e => {
 
@@ -202,6 +203,36 @@ const submitUpdate = () => {
     });
 }
 
+const deletePost = () => {
+  $('body').on('click', '.delete', e => {
+    confirm('This action cannot be undone. Do you want to proceed?');
+
+    let $postParent = $(e.target).closest('.blog-posts__post'),
+        id = $postParent.attr('id'),
+        title = $postParent.find('.blog-posts__post-title').text(),
+        author = $postParent.find('.blog-posts__post-footer .author').text(),
+        content = $postParent.find('.blog-posts__post-content').text();
+
+     // POST
+    $.ajax({
+      url: `${URL}\/${id}`,
+      method: 'DELETE',
+      dataType: 'json',
+      headers: {
+        'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
+      },
+      data: JSON.stringify({
+        id,
+        title,
+        author,
+        content
+      }), // need to stringify to send as json
+      success: () => $postParent.remove(), // remove the blog node
+      error: handleError
+    });
+  });
+};
+
 
 // INIT
 const init = () => {
@@ -210,6 +241,7 @@ const init = () => {
   updateBlogPost();
   submitUpdate();
   cancelUpdateSubmission();
+  deletePost();
 };
 
 $(init);
