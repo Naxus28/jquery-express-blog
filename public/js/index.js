@@ -1,5 +1,5 @@
-// const URL = 'http://localhost:8080/blog';
-const URL = 'https://frozen-shore-58330.herokuapp.com/blog';
+const URL = 'http://localhost:8080/blog';
+// const URL = 'https://frozen-shore-58330.herokuapp.com/blog';
 
 // BUILD POST HTML
 const buildPostsHTML = blogPosts => ( 
@@ -90,7 +90,7 @@ const postBlogPosts = () => {
         incompleteFields = fieldsIncomplete(data);
 
      if (incompleteFields.length) {
-      let formattedFields = incompleteFields.length === 1
+      incompleteFields = incompleteFields.length === 1
           ? incompleteFields
           : formatIncompleteFieldsErrorMsg(incompleteFields);
 
@@ -122,11 +122,11 @@ const updateBlogPost = () => {
   $('body').on('click', '.update', e => {
 
     // get values from fields
-    let postParent = $(e.target).closest('.blog-posts__post'),
-        id = postParent.attr('id'),
-        title = postParent.find('.blog-posts__post-title').text(),
-        author = postParent.find('.blog-posts__post-footer .author').text(),
-        content = postParent.find('.blog-posts__post-content').text();
+    let $postParent = $(e.target).closest('.blog-posts__post'),
+        id = $postParent.attr('id'),
+        title = $postParent.find('.blog-posts__post-title').text(),
+        author = $postParent.find('.blog-posts__post-footer .author').text(),
+        content = $postParent.find('.blog-posts__post-content').text();
 
     // create form
     let inlineForm =  
@@ -138,13 +138,16 @@ const updateBlogPost = () => {
 
       <div class="input-wrapper">
         <textarea name="content" placeholder="Write your post">${content}</textarea>
-      </div>
+      </div>     
 
-      <button class="update-post" type="submit">Update Post</button>
-      <button class="cancel-update">Cancel</button>
+      <div class="buttons-container">
+        <button class="submit-update" type="submit">Update Post</button>
+        <button class="cancel-update">Cancel</button>
+      </div>
     </form>`;
 
-    postParent.html(inlineForm);
+    $postParent.after(inlineForm);
+    $postParent.hide();
   });
 };
 
@@ -155,6 +158,7 @@ const submitUpdate = () => {
       let $form = $(e.target),
           id = $form.attr('id'),
           $error = $('.error'),
+          $updateForm = $('.blog-update'),
           data = $form.serializeObject();
           incompleteFields = fieldsIncomplete(data);
 
@@ -175,10 +179,11 @@ const submitUpdate = () => {
         headers: {
           'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
         },
-        data: JSON.stringify(data), // need to stringify to send as json
+        data: JSON.stringify(Object.assign(data, { id: id })), // need to stringify to send as json
         success: posts => {
           $('.blog-posts').prepend(buildPostsHTML([posts])); // pass the single post as an array so we can map over it on 'buildPostsHTML'
           $error.hide();
+          $updateForm.remove();
           $form[0].reset();
         },
         error: handleError
@@ -192,6 +197,7 @@ const init = () => {
   getBlogPosts();
   postBlogPosts();
   updateBlogPost();
+  submitUpdate();
 };
 
 $(init);

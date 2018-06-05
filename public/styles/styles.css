@@ -37,7 +37,7 @@ button {
   border: none;
   font-size: 14px;
 }
-button[type="submit"] {
+button.create-post {
   width: 30%;
   height: 50px;
   padding: 5px;
@@ -45,16 +45,31 @@ button[type="submit"] {
   font-size: 16px;
   text-transform: uppercase;
 }
+
+
 button.update,
 button.delete {
   width: 10%;
 }
-button.update {
+button.submit-update,
+button.cancel-update {
+  width: 30%;,
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 5px;
+  height: 40px;
+}
+button.update,
+button.submit-update {
   background: #5c7c94;
   margin-right: 10px;
 }
-button.delete {
+button.delete,
+button.cancel-update {
   background: #f16a5d;
+}
+.buttons-container {
+  text-align: right;
 }
 form {
   margin-top: 20px;
@@ -88,6 +103,7 @@ span {
   font-style: italic;
   font-size: 14px;
 }
+
 .blog-posts {
   margin-top: 50px;
 }
@@ -102,7 +118,6 @@ span {
 .blog-posts__post-header h3 {
   width: 80%;
 }
-
 .blog-posts__post-content {
   margin-bottom: 15px;
   line-height: 22px;
@@ -116,6 +131,7 @@ span {
 .blog-posts__post-footer span:nth-child(2) {
   text-align: right
 }
+
 .error {
   display: none;
   width: 100%;

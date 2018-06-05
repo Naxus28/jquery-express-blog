@@ -10,6 +10,7 @@
     "build:prod": "npm run clean:server && npm run build",
     "start": "npm run build:prod && node dist/index",
     "start:dev": "PORT=8080 npm run clean:client && nodemon server/index --exec babel-node",
+    "start:debug": "PORT=8080 npm run clean:client && nodemon --inspect server/index --exec babel-node",
     "test": "PORT=5000 mocha --require babel-register --exit",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
