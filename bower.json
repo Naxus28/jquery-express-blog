@@ -1,12 +1,12 @@
 {
   "name": "16-blog-api-challenge",
-  "description": "To close out this lesson, you'll build a CRUD API for a blogging platform.",
+  "description": "A blog built with a jquery client and an express API",
   "main": "index.js",
   "authors": [
     "Gabriel Ferraz <gabrielferraz27@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Naxus28/thinkful-server-side",
+  "homepage": "https://github.com/Naxus28/jquery-express-blog",
   "ignore": [
     "**/.*",
     "node_modules",

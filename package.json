@@ -16,6 +16,16 @@
     "test": "PORT=5000 mocha server/test --require babel-register --exit",
     "postinstall": "npm run bower:install"
   },
+  "homepage": "https://github.com/Naxus28/jquery-express-blog",
+  "repository": {
+     "type": "git",
+     "url": "https://github.com/Naxus28/jquery-express-blog.git"
+   },
+   "keywords": [
+     "jquery",
+     "express",
+     "blog"
+   ],
   "author": "Gabriel Ferraz <gabrielferraz27@gmail.com>",
   "license": "MIT",
   "dependencies": {
