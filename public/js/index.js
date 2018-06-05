@@ -1,6 +1,10 @@
 const URL = `${window.location.href}blog`;
 
-// BUILD POST HTML
+/**
+ * BUILD POST HTML
+ * @param  {Array} blogPosts
+ * @return {undefined}
+ */
 const buildPostsHTML = blogPosts => ( 
   blogPosts.map(post => (
     `<div class="blog-posts__post" id=${post.id}>
@@ -18,7 +22,11 @@ const buildPostsHTML = blogPosts => (
   ))
 );
 
-// ERROR HANDLER
+/**
+ * ERROR HANDLER
+ * @param  {String or Object} err passed from the user or from the jQuery error callback
+ * @return {undefined} 
+ */
 const handleError = err => {
   let error = typeof err === 'string'
       ? err
@@ -30,7 +38,11 @@ const handleError = err => {
   $error.html(error);
 };
 
-// VALIDATE FORM
+/**
+ * VALIDATE FORM
+ * @param  {Object} data
+ * @return {Array} the incoplete form fields
+ */
 const fieldsIncomplete = data => {
   const requiredFields = ['author', 'title', 'content'];
   const incomplete = [];
@@ -44,7 +56,11 @@ const fieldsIncomplete = data => {
   return incomplete;
 };
 
-// FORMAT FIELDS TEXT FOR FEEDBACK
+/**
+ * FORMAT FIELDS TEXT FOR FEEDBACK
+ * @param  {Array} fields
+ * @return {String} formatted message
+ */
 const formatIncompleteFieldsErrorMsg = fields => {
   let formattedErrorMsg = '';
 
@@ -68,6 +84,11 @@ const formatIncompleteFieldsErrorMsg = fields => {
   return formattedErrorMsg;
 };
 
+/**
+ * GETS POST TEXT FIELDS
+ * @param  {jQuery Event Object} e 
+ * @return {Object} the text fields
+ */
 const getBlogTextFields = e => {
   let $postParent = $(e.target).closest('.blog-posts__post'),
       id = $postParent.attr('id'),
@@ -83,7 +104,10 @@ const getBlogTextFields = e => {
   };
 }
 
-// GET
+/**
+ * AJAX GET 
+ * @return {undefined}
+ */
 const getBlogPosts = () => {
   $.ajax({
     url: URL,
@@ -93,7 +117,10 @@ const getBlogPosts = () => {
   });
 };
 
-// POST
+/**
+ * AJAX POST 
+ * @return {undefined}
+ */
 const postBlogPosts = () => {
   $('.blog-form').on('submit', e => {
     e.preventDefault();
@@ -132,7 +159,10 @@ const postBlogPosts = () => {
 };
 
 
-// UPDATE
+/**
+ * HANDLES CLICKS ON 'UPDATE' BUTTON (NOT SUBMISSION) 
+ * @return {undefined}
+ */
 const updateBlogPost = () => {
   $('body').on('click', '.update', e => {
     let $postParent = $(e.target).closest('.blog-posts__post');
@@ -168,6 +198,10 @@ const updateBlogPost = () => {
   });
 };
 
+/**
+ * HANDLES CLICKS ON 'CANCEL' THAT CANCEL OUT OF THE UPDATE OPTION
+ * @return {undefined}
+ */
 const cancelUpdateSubmission = () => {
   $('body').on('click', '.cancel-update', e => {
     let $postParent = $(e.target).closest('.blog-posts__post'),
@@ -179,6 +213,10 @@ const cancelUpdateSubmission = () => {
 };
 
 
+/**
+ * AJAX PUT 
+ * @return {undefined}
+ */
 const submitUpdate = () => {
   $('body').on('submit', '.blog-update', e => {
     event.preventDefault();
@@ -199,7 +237,7 @@ const submitUpdate = () => {
         return;
        }
 
-       // POST
+       // PUT
       $.ajax({
         url: `${URL}\/${id}`,
         method: 'PUT',
@@ -217,14 +255,19 @@ const submitUpdate = () => {
         error: handleError
       });
     });
-}
+};
 
+
+/**
+ * AJAX DELETE 
+ * @return {undefined}
+ */
 const deletePost = () => {
   $('body').on('click', '.delete', e => {
     if (!confirm('This action cannot be undone. Do you want to proceed?')) {
       return;
     }
-    
+
     const $postParent = $(e.target).closest('.blog-posts__post');
     const textFields = getBlogTextFields(e);
 
