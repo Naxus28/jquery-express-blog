@@ -151,6 +151,17 @@ const updateBlogPost = () => {
   });
 };
 
+const cancelUpdateSubmission = () => {
+  $('body').on('click', '.cancel-update', e => {
+    let $postParent = $(e.target).closest('.blog-posts__post'),
+        $form = $(e.target).closest('.blog-update');
+
+    $form.hide();
+    $postParent.show();
+  });
+};
+
+
 const submitUpdate = () => {
   $('body').on('submit', '.blog-update', e => {
     event.preventDefault();
@@ -198,6 +209,7 @@ const init = () => {
   postBlogPosts();
   updateBlogPost();
   submitUpdate();
+  cancelUpdateSubmission();
 };
 
 $(init);
