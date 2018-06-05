@@ -135,7 +135,7 @@ const postBlogPosts = () => {
           ? incompleteFields
           : formatIncompleteFieldsErrorMsg(incompleteFields);
 
-      handleError(`Please enter ${formattedFields} before submitting the form.`);
+      handleError(`Please enter ${incompleteFields} before submitting the form.`);
       return;
      }
 
