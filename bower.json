@@ -1,5 +1,5 @@
 {
-  "name": "16-blog-api-challenge",
+  "name": "jquery-express-blog",
   "description": "A blog built with a jquery client and an express API",
   "main": "index.js",
   "authors": [
