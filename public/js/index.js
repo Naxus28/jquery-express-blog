@@ -68,6 +68,21 @@ const formatIncompleteFieldsErrorMsg = fields => {
   return formattedErrorMsg;
 };
 
+const getBlogTextFields = e => {
+  let $postParent = $(e.target).closest('.blog-posts__post'),
+      id = $postParent.attr('id'),
+      title = $postParent.find('.blog-posts__post-title').text(),
+      author = $postParent.find('.blog-posts__post-footer .author').text(),
+      content = $postParent.find('.blog-posts__post-content').text();
+
+  return {
+    id,
+    title,
+    author,
+    content
+  };
+}
+
 // GET
 const getBlogPosts = () => {
   $.ajax({
@@ -120,13 +135,15 @@ const postBlogPosts = () => {
 // UPDATE
 const updateBlogPost = () => {
   $('body').on('click', '.update', e => {
+    let $postParent = $(e.target).closest('.blog-posts__post');
 
     // get values from fields
-    let $postParent = $(e.target).closest('.blog-posts__post'),
-        id = $postParent.attr('id'),
-        title = $postParent.find('.blog-posts__post-title').text(),
-        author = $postParent.find('.blog-posts__post-footer .author').text(),
-        content = $postParent.find('.blog-posts__post-content').text();
+    let { 
+      id, 
+      author,
+      title, 
+      content
+    } = getBlogTextFields(e);
 
     // create form
     let inlineForm =  
@@ -204,28 +221,22 @@ const submitUpdate = () => {
 
 const deletePost = () => {
   $('body').on('click', '.delete', e => {
-    confirm('This action cannot be undone. Do you want to proceed?');
+    if (!confirm('This action cannot be undone. Do you want to proceed?')) {
+      return;
+    }
+    
+    const $postParent = $(e.target).closest('.blog-posts__post');
+    const textFields = getBlogTextFields(e);
 
-    let $postParent = $(e.target).closest('.blog-posts__post'),
-        id = $postParent.attr('id'),
-        title = $postParent.find('.blog-posts__post-title').text(),
-        author = $postParent.find('.blog-posts__post-footer .author').text(),
-        content = $postParent.find('.blog-posts__post-content').text();
-
-     // POST
+     // DELETE
     $.ajax({
-      url: `${URL}\/${id}`,
+      url: `${URL}\/${textFields.id}`,
       method: 'DELETE',
       dataType: 'json',
       headers: {
         'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
       },
-      data: JSON.stringify({
-        id,
-        title,
-        author,
-        content
-      }), // need to stringify to send as json
+      data: JSON.stringify(textFields), // need to stringify to send as json
       success: () => $postParent.remove(), // remove the blog node
       error: handleError
     });
