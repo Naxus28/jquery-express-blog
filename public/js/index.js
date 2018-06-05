@@ -1,5 +1,4 @@
-const URL = 'http://localhost:8080/blog';
-// const URL = 'https://frozen-shore-58330.herokuapp.com/blog';
+const URL = `${window.location.href}blog`;
 
 // BUILD POST HTML
 const buildPostsHTML = blogPosts => ( 
