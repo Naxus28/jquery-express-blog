@@ -14,6 +14,7 @@ import chaiHttp from 'chai-http';
 import app from '../server/index';
 
 const should = chai.should(); // provides shorter syntax than "expect"
+const expect = chai.expect; 
 const endPoint = '/blog';
 
 // instruct chai to use chai-http
@@ -161,8 +162,8 @@ describe('===BLOG API===', function() {
       const blog = {
         author: 'John Doe', 
         title: 'My Blog Post', 
-        content: 'I love Node...'
-      };
+        content: 'I love Node...'      };
+      // const response = { message: `post id=${blog.id} was succesfully deleted`}
 
       // post blog then delete it
       chai.request(app)
@@ -175,7 +176,7 @@ describe('===BLOG API===', function() {
             .delete(`${endPoint}\/${res.body.id}`) // need to escape the '/'
             .end((err, res) => {
               res.should.have.status(200);
-              res.body.should.equal('');
+              expect(res.body).to.deep.equal({ message: 'post succesfully deleted'});
               done();
             });
         });

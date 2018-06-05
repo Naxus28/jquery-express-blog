@@ -36,7 +36,7 @@ export default {
 
     if (postIndex > -1) {
       posts.splice(postIndex, 1);
-      return { message: `post id=${id} was succesfully deleted`};
+      return { message: 'post succesfully deleted'};
     } else {
       throw new StorageException(`Can't delete item \`${id}\` because it doesn't exist.`, 400);
     }
