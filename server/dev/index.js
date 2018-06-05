@@ -1,5 +1,8 @@
 import express from 'express';
 
+// config
+import config from './config/config';
+
 // middleware
 import appMiddleware from './middleware/appMiddleware';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware';
@@ -8,10 +11,6 @@ import errorHandlerMiddleware from './middleware/errorHandlerMiddleware';
 import blogRoutes from './api/blog/blogRoutes';
 
 const app = express();
-const PORT = process.env.PORT || 8080;
-const URL = process.env.NODE_ENV === 'production'
-              ? `https://frozen-shore-58330.herokuapp.com`
-              : `http://localhost:${PORT}`;
 
 appMiddleware(app, express);
 
@@ -19,7 +18,7 @@ blogRoutes(app);
 
 errorHandlerMiddleware(app);
 
-app.listen(PORT, () =>
-  console.log(`Server listening at ${URL}`));
+app.listen(config.port, () =>
+  console.log(`Server listening at ${config.url}`));
 
 export default app;
