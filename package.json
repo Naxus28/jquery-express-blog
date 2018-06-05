@@ -11,7 +11,7 @@
     "start": "npm run build:prod && node server/dist/index",
     "start:dev": "PORT=8080 npm run clean:client && nodemon server/dev/index --exec babel-node",
     "start:debug": "PORT=8080 npm run clean:client && nodemon --inspect server/dev/index --exec babel-node",
-    "test": "PORT=5000 mocha --require babel-register --exit",
+    "test": "PORT=5000 mocha server/test --require babel-register --exit",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
   "author": "Gabriel Ferraz <gabrielferraz27@gmail.com>",

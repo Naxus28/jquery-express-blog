@@ -11,7 +11,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 
-import app from '../server/index';
+import app from '../dev/index';
 
 const should = chai.should(); // provides shorter syntax than "expect"
 const expect = chai.expect; 
