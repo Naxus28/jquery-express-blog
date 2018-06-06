@@ -3,11 +3,11 @@ const URL = `${window.location.href}blog`;
 /**
  * BUILD POST HTML
  * @param  {Array} blogPosts
- * @return {undefined}
+ * @return {DOM Node(s)}
  */
 const buildPostsHTML = blogPosts => ( 
   blogPosts.map(post => (
-    `<div class="blog-posts__post" id=${post.id}>
+    `<div class="blog-posts__post" id=${post._id}>
       <div class="blog-posts__post-header">
         <h3 class="blog-posts__post-title">${post.title}</h3>
         <button class="update">Update</button>
@@ -16,7 +16,12 @@ const buildPostsHTML = blogPosts => (
       <p class="blog-posts__post-content">${post.content}</p>
       <div class="blog-posts__post-footer">
         <span class="author">${post.author}</span>
-        <span class="date">${moment(post.publishDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</span>
+        <span class="date">Published: ${moment(post.publishDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</span>
+        ${
+          post.updatedDate 
+            ? `<span class="date">Updated: ${moment(post.updatedDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</span>`
+            : ''
+        }
       </div>
     </div>`
   ))

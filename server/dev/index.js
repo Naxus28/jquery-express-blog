@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 
 // config
 import config from './config/config';
@@ -9,6 +10,13 @@ import errorHandlerMiddleware from './middleware/errorHandlerMiddleware';
 
 // routes
 import blogRoutes from './api/blog/blogRoutes';
+
+// start db
+mongoose.connect(config.db.url)
+  .then(
+    conn => console.log('Mongoose connected'),
+    err => console.log(`Mongoose error: ${err}`)
+  );
 
 const app = express();
 
