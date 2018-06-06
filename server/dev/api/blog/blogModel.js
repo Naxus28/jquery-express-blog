@@ -3,17 +3,16 @@ import mongoose from 'mongoose';
 const BlogPost = new mongoose.Schema({
   author: {
     type: String,
-    required: 'Author\'s name is mandatory.',
-    unique: 'This username has already been taken.'
+    required: 'Author\'s name is mandatory',
   },
   title: {
     type: String,
-    required: 'Title is mandatory.',
-    unique: 'This title has already been used.'
+    required: 'Title is mandatory',
+    unique: 'This title has already been used'
   },
   content: {
     type: String,
-    required: 'Content is mandatory.'
+    required: 'Content is mandatory'
   },
   publishDate: {
     type: Date,

@@ -6,25 +6,44 @@ const URL = `${window.location.href}blog`;
  * @return {DOM Node(s)}
  */
 const buildPostsHTML = blogPosts => ( 
-  blogPosts.map(post => (
-    `<div class="blog-posts__post" id=${post._id}>
+  blogPosts.map(post => {
+    let {
+      _id,
+      title,
+      content,
+      author,
+      publishDate,
+      updatedDate
+    } = post;
+
+    content = content.length > 300 
+      ? `${content.substring(0, 500)}... <a href="" class="read-more">read more</a>`
+      : content;
+
+    return `
+    <div class="blog-posts__post" id=${_id}>
       <div class="blog-posts__post-header">
-        <h3 class="blog-posts__post-title">${post.title}</h3>
+        <h3 class="blog-posts__post-title">${title}</h3>
         <button class="update">Update</button>
         <button class="delete">Delete</button>
       </div>
-      <p class="blog-posts__post-content">${post.content}</p>
+      <p class="blog-posts__post-content">${content}</p>
       <div class="blog-posts__post-footer">
-        <span class="author">${post.author}</span>
-        <span class="date">Published: ${moment(post.publishDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</span>
-        ${
-          post.updatedDate 
-            ? `<span class="date">Updated: ${moment(post.updatedDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</span>`
-            : ''
-        }
+        <div class="author-container">
+          <span class="author bold">${author}</span>
+        </div>        
+
+        <div class="published-dates-container">
+          <span class="date bold">Published: ${moment(publishDate).format('MMMM Do YYYY, h:mm:ss a')}</span>
+          ${
+            updatedDate 
+              ? `<span class="date bold">Updated: ${moment(updatedDate).format('MMMM Do YYYY, h:mm:ss a')}</span>`
+              : ''
+          }
+        </div>
       </div>
     </div>`
-  ))
+  })
 );
 
 /**
@@ -161,7 +180,7 @@ const postBlogPosts = () => {
         $error.hide();
         $form[0].reset();
       },
-      error: handleError
+      error: err => handleError(err)
     });
   });
 };
@@ -266,7 +285,7 @@ const submitUpdate = () => {
           $updateForm.remove();
           $form[0].reset();
         },
-        error: handleError
+        error: err => handleError(err)
       });
     });
 };

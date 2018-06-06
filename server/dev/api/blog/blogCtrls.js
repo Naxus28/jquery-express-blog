@@ -14,10 +14,13 @@ let blogPostParam = (req, res, next, id) => {
 };
 
 const getBlogPosts = (req, res, next) => {
-  BlogModel.find({},(err, blogPost) => {
-    if (err) return errorHandler(err, next);
-    res.json(blogPost);
-  });
+  BlogModel
+    .find({})
+    .sort({ publishDate: 'desc'})
+    .exec((err, blogPost) => {
+      if (err) return errorHandler(err, next);
+      res.json(blogPost);
+    });
 };
 
 const getBlogPost = (req, res, next) => {
