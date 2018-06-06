@@ -13,6 +13,7 @@
     "build:prod": "npm run clean:server && npm run build",
     "start": "npm install && npm run build:client && npm run build:prod && node server/dist/index",
     "start:dev": "PORT=8080 && npm run build:client && nodemon server/dev/index --exec babel-node",
+    "serve:dev": "PORT=8080 nodemon server/dev/index --exec babel-node",
     "start:debug": "PORT=8080 && npm run build:client && nodemon --inspect server/dev/index --exec babel-node",
     "test": "PORT=5000 mocha server/test --require babel-register --exit",
     "postinstall": "npm run bower:install"
