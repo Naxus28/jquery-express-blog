@@ -24,18 +24,21 @@ const buildPostsHTML = blogPosts => (
 
 /**
  * ERROR HANDLER
- * @param  {String or Object} err passed from the user or from the jQuery error callback
+ * @param  {String or jQuery Object} err passed from the user or from the jQuery error callback
  * @return {undefined} 
  */
-const handleError = err => {
+const handleError = (err, errContainerSelector = '.post-error') => {
   let error = typeof err === 'string'
       ? err
       : `${err.status} ${err.statusText}: ${err.responseJSON.message}`;
 
-  let $error = $('.error');
+  errContainerSelector = typeof errContainerSelector === 'string'
+      ? $(errContainerSelector)
+      : errContainerSelector
 
-  $error.show();
-  $error.html(error);
+  errContainerSelector
+    .html(error)
+    .show();
 };
 
 /**
@@ -126,7 +129,7 @@ const postBlogPosts = () => {
     e.preventDefault();
 
     let $form = $(e.target),
-        $error = $('.error'),
+        $error = $('.post-error'),
         data = $form.serializeObject();
         incompleteFields = fieldsIncomplete(data);
 
@@ -177,21 +180,24 @@ const updateBlogPost = () => {
 
     // create form
     let inlineForm =  
-    `<form action="#" class="blog-update"  onsubmit="return false;" id=${id}>
-      <div class="input-wrapper">
-        <input name="author" placeholder="Author" value="${author}">
-        <input name="title" placeholder="Title" value="${title}">
-      </div>
+    `<div class="update-form">
+      <div class="update-error error"></div>
+      <form action="#" class="blog-update"  onsubmit="return false;" id=${id}>
+        <div class="input-wrapper">
+          <input name="author" placeholder="Author" value="${author}">
+          <input name="title" placeholder="Title" value="${title}">
+        </div>
 
-      <div class="input-wrapper">
-        <textarea name="content" placeholder="Write your post">${content}</textarea>
-      </div>     
+        <div class="input-wrapper">
+          <textarea name="content" placeholder="Write your post">${content}</textarea>
+        </div>     
 
-      <div class="buttons-container">
-        <button class="submit-update" type="submit">Update Post</button>
-        <button class="cancel-update">Cancel</button>
-      </div>
-    </form>`;
+        <div class="buttons-container">
+          <button class="submit-update">Update Post</button>
+          <button class="cancel-update" type="button">Cancel</button>
+        </div>
+      </form>
+    </div>`;
 
     $postParent.after(inlineForm);
     $postParent.hide();
@@ -204,11 +210,14 @@ const updateBlogPost = () => {
  */
 const cancelUpdateSubmission = () => {
   $('body').on('click', '.cancel-update', e => {
-    let $postParent = $(e.target).closest('.blog-posts__post'),
-        $form = $(e.target).closest('.blog-update');
+    let $target = $(e.target),
+        $form = $target.closest('.blog-update'),
+        $postParent = $target.closest('.update-form').prev(),
+        $error = $target.closest('.update-form').find('.update-error');
 
-    $form.hide();
     $postParent.show();
+    $form.hide();
+    $error.hide();
   });
 };
 
@@ -223,7 +232,7 @@ const submitUpdate = () => {
 
       let $form = $(e.target),
           id = $form.attr('id'),
-          $error = $('.error'),
+          $error = $(e.target).closest('.update-form').find('.update-error'),
           $updateForm = $('.blog-update'),
           data = $form.serializeObject();
           incompleteFields = fieldsIncomplete(data);
@@ -233,7 +242,7 @@ const submitUpdate = () => {
             ? incompleteFields
             : formatIncompleteFieldsErrorMsg(incompleteFields);
 
-        handleError(`Please enter ${formattedFields} before submitting the form.`);
+        handleError(`Please enter ${formattedFields} before submitting the form.`, $error);
         return;
        }
 

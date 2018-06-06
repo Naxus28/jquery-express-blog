@@ -116,6 +116,8 @@ span {
 }
 .blog-posts__post-header {
   display: flex;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 .blog-posts__post-header h3 {
   width: 80%;
