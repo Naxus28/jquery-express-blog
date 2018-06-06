@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 html,
 body {
@@ -43,7 +45,7 @@ button.create-post {
   width: 30%;
   height: 50px;
   padding: 5px;
-  background: #5c7c94;
+  background: #3e698a;
   font-size: 16px;
   text-transform: uppercase;
 }
@@ -63,12 +65,12 @@ button.cancel-update {
 }
 button.update,
 button.submit-update {
-  background: #5c7c94;
+  background: #3e698a;
   margin-right: 10px;
 }
 button.delete,
 button.cancel-update {
-  background: #f16a5d;
+  background: #de584b;
 }
 .buttons-container {
   text-align: right;
@@ -129,12 +131,16 @@ span {
 .blog-posts__post-footer {
   display: flex;
 }
-.blog-posts__post-footer span {
+.blog-posts__post-footer div {
   width: 50%;
+  margin-bottom: 10px;
 }
-.blog-posts__post-footer span:nth-child(2) {
-  text-align: right
+.blog-posts__post-footer .published-dates-container span {
+  display: block;
+  margin-bottom: 5px;
+  text-align: right;
 }
+
 
 .error {
   display: none;
@@ -145,6 +151,10 @@ span {
   font-size: 16px;
   background: #f16a5d;
   color: white;
+}
+
+.bold {
+  font-weight: 600;
 }
 
 @media screen and (max-width: 1050px) {
@@ -182,11 +192,18 @@ span {
   width: 75%;
   font-size: 18px;
  } 
-
  .blog-posts__post-header button {
   width: 25%;
  }
-
+ .blog-posts__post-footer {
+   display: block;
+ }
+ .blog-posts__post-footer div {
+   width: 100%;
+ }
+ .blog-posts__post-footer .published-dates-container span {
+   text-align: left;
+ }
  button.submit-update,
  button.cancel-update  {
   width: 40%;
