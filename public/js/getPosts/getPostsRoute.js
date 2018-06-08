@@ -1,0 +1,2 @@
+sammyApp.get('#/', getPosts);
+
