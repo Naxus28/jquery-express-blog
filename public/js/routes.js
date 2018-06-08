@@ -8,14 +8,22 @@
         url: URL,
         dataType: 'json',
         success: posts => {
-          this.partial('../templates/home.template');
+          // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
           context.app.swap('');
-          $.each(posts, (i, post) => {
-            let { publishDate, updatedDate } = post;
 
+          // first load the submit-form template
+          this.partial('../templates/submit-form.template');
+
+          // for each post fetched from the api
+          $.each(posts, (i, post) => {
+            // format dates
+            let { publishDate, updatedDate } = post;
             publishDate = moment(publishDate).format('MMMM Do YYYY, h:mm:ss a');
             updatedDate = updatedDate && moment(updatedDate).format('MMMM Do YYYY, h:mm:ss a');
 
+            // interpolate the variables on the template
+            // and append to '.blog-posts' in submit-form.template
+            // previously loaded into the context 
             context.render('../templates/posts.template', { 
               post,
               publishDate,
@@ -26,13 +34,6 @@
         },
         // error: handleError
       });
-
-
-      // context.app.swap('');
-      // $.each(this.items, function(i, item) {
-      //   context.render('templates/item.template', {id: i, item: item})
-      //          .appendTo(context.$element());
-      // });
     });
 
     // this.get('#/item/:id', function(context) {
