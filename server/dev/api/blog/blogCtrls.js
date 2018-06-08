@@ -33,6 +33,9 @@ const getBlogPost = (req, res, next) => {
 };
 
 const createBlogPost = (req, res, next) => {
+  // create slug for friendly url
+  req.body.slug = req.body.title.toLowerCase().split(' ').join('-')
+
   const newBlogPost = new BlogModel(req.body);
 
   newBlogPost.save((err, blogPost) => {

@@ -136,14 +136,14 @@ const getBlogTextFields = e => {
  * AJAX GET 
  * @return {undefined}
  */
-const getBlogPosts = () => {
-  $.ajax({
-    url: URL,
-    dataType: 'json',
-    success: posts => $('.blog-posts').html(buildPostsHTML(posts)),
-    error: handleError
-  });
-};
+// const getBlogPosts = () => {
+//   $.ajax({
+//     url: URL,
+//     dataType: 'json',
+//     success: posts => $('.blog-posts').html(buildPostsHTML(posts)),
+//     error: handleError
+//   });
+// };
 
 /**
  * AJAX POST 
@@ -323,7 +323,7 @@ const deletePost = () => {
 
 // INIT
 const init = () => {
-  getBlogPosts();
+  // getBlogPosts();
   postBlogPosts();
   updateBlogPost();
   submitUpdate();

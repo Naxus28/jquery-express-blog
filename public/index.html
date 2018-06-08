@@ -5,6 +5,8 @@
     <title>Blog Api</title>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/styles.css">
+    
+    <!-- vendors -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -13,8 +15,19 @@
     <script src="vendors/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
     <script src="./js/lib/min/sammy-latest.min.js"></script>
     <script src="./js/lib/min/plugins/sammy.template-latest.min.js"></script>
+    
     <script src="./js/index.js"></script>
-    <script src="./js/routes.js"></script>
+
+    <!-- sammy config -->
+    <script src="./js/config/sammy.config.js"></script>
+    
+    <!-- get posts  -->
+    <script src="./js/getPosts/getPostsCtrl.js"></script>
+    <script src="./js/getPosts/getPostsRoute.js"></script>
+    
+    <!-- get post -->
+    <script src="./js/getPost/getPostCtrl.js"></script>
+    <script src="./js/getPost/getPostRoute.js"></script>
   </head>
   <body>    
     <div id="main">
