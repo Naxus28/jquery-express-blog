@@ -11,37 +11,15 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
     <script src="vendors/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="./js/lib/min/sammy-latest.min.js"></script>
+    <script src="./js/lib/min/plugins/sammy.template-latest.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/routes.js"></script>
   </head>
   <body>    
-    <header>
-      <h1>Blog Api</h1>
-    </header>
-    <section class="the-pit">
-      <h2>Create a new blog post</h2>
-
-      <div class="post-error error">
-        <!-- error generated via jquery -->
-      </div>
-      
-      <form action="#" class="blog-form" onsubmit="return false;">
-        <div class="input-wrapper">
-          <input name="author" placeholder="Author">
-          <input name="title" placeholder="Title">
-        </div>
-
-        <div class="input-wrapper">
-          <textarea name="content" placeholder="Write your post"></textarea>
-        </div>
-
-        <button class="create-post">Create Post</button>
-      </form>
-
-      <div class="blog-posts">
-        <!-- posts retrieved via jquery -->
-      </div>
-
-    </section>
+    <div id="main">
+      <!-- sammy templates load here -->
+    </div>
   </body>
 </html>
 

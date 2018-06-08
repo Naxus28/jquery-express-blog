@@ -1,4 +1,5 @@
-const URL = `${window.location.href}blog`;
+const URL = `${window.location.origin}/blog`;
+
 
 /**
  * BUILD POST HTML
