@@ -1,0 +1,22 @@
+<div class="blog-posts__post" id="<%= post._id %>">
+  <div class="blog-posts__post-header">
+    <h3 class="blog-posts__post-title"><%= post.title %></h3>
+    <button class="update">Update</button>
+    <button class="delete">Delete</button>
+  </div>
+  <p class="blog-posts__post-content"><%= post.content %></p>
+  <p class="blog-posts__post-deail-link"><a href="/#/posts/<%= post.slug %>">Read Post</a></p>
+  <div class="blog-posts__post-footer">
+    <div class="author-container">
+      <span class="author bold"><%= post.author %></span>
+    </div>        
+
+    <div class="published-dates-container">
+      <span class="date bold">Published: <%= post.publishDate %></span>
+
+      <% if (post.updatedDate) { %>
+        <span class="date bold">Updated: <%= post.updatedDate %></span>
+      <% } %>
+    </div>
+  </div>
+</div>

@@ -125,8 +125,17 @@ span {
   width: 80%;
 }
 .blog-posts__post-content {
-  margin-bottom: 15px;
   line-height: 22px;
+}
+.blog-posts__post-deail-link {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.blog-posts__post-deail-link a {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #3e698a;
 }
 .blog-posts__post-footer {
   display: flex;
