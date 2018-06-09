@@ -1,7 +1,9 @@
-<div class="post-container">
-  <a href="/#/">Home</a>
-  <h1><%= post.title %></h1>
-  <p><%= post.author %></p>
-  <p><%= post.content %></p>
-  <div class="get-blog-error"></div>
+<div class="the-pit">
+  <div class="post-container">
+    <a href="/#/">Home</a>
+    <h1><%= post.title %></h1>
+    <p><%= post.author %></p>
+    <p><%= post.content %></p>
+    <div class="get-blog-error"></div>
+  </div>
 </div>

@@ -4,7 +4,7 @@
  * @return {undefined} 
  */
 const handleApiError = (err, context) => {
-  const error = `${err.status} ${err.statusText}: ${err.responseJSON.message}`;
+  const error = `${err.status} ${err.responseJSON.message}`;
 
   context.app.swap('');
 
