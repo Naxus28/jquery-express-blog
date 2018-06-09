@@ -56,7 +56,8 @@ button.delete {
   width: 10%;
 }
 button.submit-update,
-button.cancel-update {
+button.cancel-update,
+.blog-post__actions-buttons-container button {
   width: 30%;,
   font-size: 16px;
   text-transform: uppercase;
@@ -74,6 +75,22 @@ button.cancel-update {
 }
 .buttons-container {
   text-align: right;
+}
+
+.blog-post__post-content {
+  line-height: 24px;
+  font-size: 18px;
+}
+.blog-post__actions-buttons-container {
+  margin-top: 30px;
+}
+.blog-post__dates-container {
+  margin-top: 20px;
+  text-align: right;
+}
+.blog-post__dates-container span {
+  display: block;
+  margin-bottom: 10px;
 }
 form {
   margin-top: 20px;

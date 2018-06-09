@@ -1,9 +1,28 @@
 <div class="the-pit">
-  <div class="post-container">
+  <div class="post-container" id="<%= post._id %>"">
     <a href="/#/">Home</a>
-    <h1><%= post.title %></h1>
-    <p><%= post.author %></p>
-    <p><%= post.content %></p>
+    <div class="blog-posts__post-header">
+      <h1 class="blog-post__post-title"><%= post.title %></h1>
+    </div>
+
+    <h3 class="blog-post__post-author">
+      <%= post.author %>
+    </h3>
+    <p class="blog-post__post-content">
+      <%= post.content %>
+    </p>
+    <div class="blog-post__post-footer">
+      <div class="blog-post__dates-container">
+        <span class="date bold">Published: <%= post.publishDate %></span>
+        <% if (post.updatedDate) { %>
+          <span class="date bold">Updated: <%= post.updatedDate %></span>
+        <% } %>
+      </div>
+      <div class="blog-post__actions-buttons-container">
+        <button class="update">Update</button>
+        <button class="delete">Delete</button>
+      </div>
+    </div>
     <div class="get-blog-error"></div>
   </div>
 </div>
