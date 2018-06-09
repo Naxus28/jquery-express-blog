@@ -1,0 +1,1 @@
+const BLOG_ENDPOINT = `${window.location.origin}/blog`;
