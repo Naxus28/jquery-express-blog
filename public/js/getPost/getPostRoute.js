@@ -1,2 +1,2 @@
-sammyApp.get('#/posts/:slug', getPost);
+sammyApp.get('#/blog/:slug', getPost);
 

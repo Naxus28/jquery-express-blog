@@ -7,7 +7,7 @@ const formatDateForPost = rawDate => moment(rawDate).format('MMMM Do YYYY, h:mm:
 // get method
 const getPosts = context => {
   $.ajax({
-    url: URL,
+    url: BLOG_ENDPOINT,
     dataType: 'json',
     success: posts => {
       // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
@@ -33,6 +33,6 @@ const getPosts = context => {
           .appendTo('.blog-posts');
       });
     },
-    // error: handleError
+    error: handleApiError
   });
 };

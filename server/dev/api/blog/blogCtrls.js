@@ -24,9 +24,9 @@ const getBlogPosts = (req, res, next) => {
 };
 
 const getBlogPost = (req, res, next) => {
-  console.log('*req.post*: '.green, req.blogPost); 
-
-  BlogModel.findById(req.params.id, (err, blogPost) => {
+  // get blog by slug retrieved from the friendly url
+  // displayed to the user
+  BlogModel.find({slug: req.params.slug}, (err, blogPost) => {
     if (err) return errorHandler(err, next);
     res.json(blogPost);
   });

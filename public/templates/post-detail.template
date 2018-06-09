@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-</head>
-<body>
-  <h1>hello world</h1>
-</body>
-</html>
+<div class="post-container">
+  <a href="/#/">Home</a>
+  <h1><%= post.title %></h1>
+  <p><%= post.author %></p>
+  <p><%= post.content %></p>
+  <div class="get-blog-error"></div>
+</div>

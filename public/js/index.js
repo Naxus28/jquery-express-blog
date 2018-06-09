@@ -1,4 +1,4 @@
-// const URL = `${window.location.origin}/blog`;
+// const BLOG_ENDPOINT = `${window.location.origin}/blog`;
 
 
 // /**
@@ -47,24 +47,7 @@
 //   })
 // );
 
-// /**
-//  * ERROR HANDLER
-//  * @param  {String or jQuery Object} err passed from the user or from the jQuery error callback
-//  * @return {undefined} 
-//  */
-// const handleError = (err, errContainerSelector = '.post-error') => {
-//   let error = typeof err === 'string'
-//       ? err
-//       : `${err.status} ${err.statusText}: ${err.responseJSON.message}`;
 
-//   errContainerSelector = typeof errContainerSelector === 'string'
-//       ? $(errContainerSelector)
-//       : errContainerSelector
-
-//   errContainerSelector
-//     .html(error)
-//     .show();
-// };
 
 // /**
 //  * VALIDATE FORM
@@ -138,7 +121,7 @@
 //  */
 // // const getBlogPosts = () => {
 // //   $.ajax({
-// //     url: URL,
+// //     url: BLOG_ENDPOINT,
 // //     dataType: 'json',
 // //     success: posts => $('.blog-posts').html(buildPostsHTML(posts)),
 // //     error: handleError
@@ -169,7 +152,7 @@
 
 //      // POST
 //     $.ajax({
-//       url: URL,
+//       url: BLOG_ENDPOINT,
 //       method: 'POST',
 //       dataType: 'json',
 //       headers: {
@@ -273,7 +256,7 @@
 
 //        // PUT
 //       $.ajax({
-//         url: `${URL}\/${id}`,
+//         url: `${BLOG_ENDPOINT}\/${id}`,
 //         method: 'PUT',
 //         dataType: 'json',
 //         headers: {
@@ -307,7 +290,7 @@
 
 //      // DELETE
 //     $.ajax({
-//       url: `${URL}\/${textFields.id}`,
+//       url: `${BLOG_ENDPOINT}\/${textFields.id}`,
 //       method: 'DELETE',
 //       dataType: 'json',
 //       headers: {
