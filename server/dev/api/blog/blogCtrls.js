@@ -35,7 +35,7 @@ const getBlogPost = (req, res, next) => {
         status: 404
       }, ApiException, next);
     } 
-    res.json(blogPost);
+    res.json(blogPost[0]); // return the first (only) element of the array so the frontend gets the object instead of an array
   });
 };
 

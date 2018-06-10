@@ -9,7 +9,11 @@ const getPost = context => {
     url: `${BLOG_ENDPOINT}${urlPath}`,
     dataType: 'json',
     success: post => {
-      post = post[0];
+      let publishDate = formatDateForPost(post.publishDate),
+          updatedDate = post.updatedDate && formatDateForPost(post.updatedDate);
+
+      // mutate post with formatted data
+      Object.assign(post, { publishDate, updatedDate })
 
       // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
       context.app.swap('');

@@ -11,13 +11,13 @@
     <p class="blog-post__post-content">
       <%= post.content %>
     </p>
+    <div class="blog-post__dates-container">
+      <span class="date">Published: <%= post.publishDate %></span>
+      <% if (post.updatedDate) { %>
+        <span class="date">Updated: <%= post.updatedDate %></span>
+      <% } %>
+    </div>
     <div class="blog-post__post-footer">
-      <div class="blog-post__dates-container">
-        <span class="date bold">Published: <%= post.publishDate %></span>
-        <% if (post.updatedDate) { %>
-          <span class="date bold">Updated: <%= post.updatedDate %></span>
-        <% } %>
-      </div>
       <div class="blog-post__actions-buttons-container">
         <button class="update">Update</button>
         <button class="delete">Delete</button>
