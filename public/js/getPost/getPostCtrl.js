@@ -3,10 +3,10 @@
 * @return {undefined}
 */
 const getPost = context => {
-  const urlPath = window.location.hash.replace('#/blog', '');
+  const slug = window.location.hash.replace('#/blog', '');
 
   $.ajax({
-    url: `${BLOG_ENDPOINT}${urlPath}`,
+    url: `${BLOG_ENDPOINT}${slug}`,
     dataType: 'json',
     success: post => {
       let publishDate = formatDateForPost(post.publishDate),
