@@ -8,7 +8,7 @@
     <!-- error generated via jquery -->
   </div>
   
-  <form action="#" class="blog-form" onsubmit="return false;">
+  <form action="#/" class="blog-form" method="POST" onsubmit="return false;">
     <div class="input-wrapper">
       <input name="author" placeholder="Author">
       <input name="title" placeholder="Title">

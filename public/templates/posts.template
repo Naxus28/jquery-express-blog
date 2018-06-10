@@ -1,8 +1,6 @@
 <div class="blog-posts__post" id="<%= post._id %>">
   <div class="blog-posts__post-header">
     <h3 class="blog-posts__post-title"><%= post.title %></h3>
-    <button class="update">Update</button>
-    <button class="delete">Delete</button>
   </div>
   <p class="blog-posts__post-content"><%= post.content %></p>
   <p class="blog-posts__post-deail-link"><a href="/#/blog/<%= post.slug %>">Read Post</a></p>

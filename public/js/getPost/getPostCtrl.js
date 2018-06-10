@@ -1,3 +1,7 @@
+/**
+* AJAX GET:slug
+* @return {undefined}
+*/
 const getPost = context => {
   const urlPath = window.location.hash.replace('#/blog', '');
 

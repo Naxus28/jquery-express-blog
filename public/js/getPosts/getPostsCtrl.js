@@ -1,3 +1,7 @@
+/**
+* AJAX GET 
+* @return {undefined}
+*/
 const getPosts = context => {
   $.ajax({
     url: BLOG_ENDPOINT,
@@ -26,6 +30,6 @@ const getPosts = context => {
           .appendTo('.blog-posts');
       });
     },
-    error: handleApiError
+    error: err => handleApiError(err, context)
   });
 };

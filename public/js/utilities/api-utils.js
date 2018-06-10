@@ -3,8 +3,10 @@
  * @param  {String or jQuery Object} err passed from the user or from the jQuery error callback
  * @return {undefined} 
  */
-const handleApiError = (err, context) => {
-  const error = `${err.status} ${err.responseJSON.message}`;
+const handleApiError = (err, context = false) => {
+  let error = typeof err === 'string' 
+    ? err
+    : `${err.status} ${err.responseJSON.message}`;
 
   context.app.swap('');
 
