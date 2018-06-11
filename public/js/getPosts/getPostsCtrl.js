@@ -1,13 +1,10 @@
-// utilities
-const trimContent = (content, maxLen) => {
-    return content.length > maxLen ? `${content.substring(0, maxLen)}...` : content;
-};
-const formatDateForPost = rawDate => moment(rawDate).format('MMMM Do YYYY, h:mm:ss a');
-
-// get method
+/**
+* AJAX GET 
+* @return {undefined}
+*/
 const getPosts = context => {
   $.ajax({
-    url: URL,
+    url: BLOG_ENDPOINT,
     dataType: 'json',
     success: posts => {
       // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
@@ -21,7 +18,7 @@ const getPosts = context => {
         // format post content
         let content = trimContent(post.content, 350),
             publishDate = formatDateForPost(post.publishDate),
-            updatedDate = formatDateForPost(post.updatedDate);
+            updatedDate = post.updatedDate && formatDateForPost(post.updatedDate);
         
         let updatedPost = Object.assign({}, post, {publishDate, updatedDate, content})
         
@@ -33,6 +30,6 @@ const getPosts = context => {
           .appendTo('.blog-posts');
       });
     },
-    // error: handleError
+    error: err => handleApiError(err, context)
   });
 };

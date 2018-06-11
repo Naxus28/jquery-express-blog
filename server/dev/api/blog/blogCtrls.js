@@ -1,4 +1,5 @@
 import BlogModel from './blogModel';
+import { ApiException } from '../../errorHandlers/exceptionClasses';
 
 let blogPostParam = (req, res, next, id) => { 
   BlogModel.findById(id, (err, blogPost) => {
@@ -24,11 +25,17 @@ const getBlogPosts = (req, res, next) => {
 };
 
 const getBlogPost = (req, res, next) => {
-  console.log('*req.post*: '.green, req.blogPost); 
-
-  BlogModel.findById(req.params.id, (err, blogPost) => {
-    if (err) return errorHandler(err, next);
-    res.json(blogPost);
+  // get blog by slug retrieved from the friendly url
+  // displayed to the user
+  BlogModel.find({slug: req.params.slug}, (err, blogPost) => {
+    if (err) return errorHandler(err, ApiException);
+    if (!blogPost.length) {
+      return errorHandler({
+        message: 'Resource not found', 
+        status: 404
+      }, ApiException, next);
+    } 
+    res.json(blogPost[0]); // return the first (only) element of the array so the frontend gets the object instead of an array
   });
 };
 
@@ -60,7 +67,9 @@ const deleteBlogPost = (req, res, next) => {
   });
 };
 
-const errorHandler = (err, next) => next(new Error(err));
+const errorHandler = (err, Exception, next) => {
+  next(new Exception(err.message, err.status));
+};
 
 
 export {

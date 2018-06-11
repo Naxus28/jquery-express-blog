@@ -12,14 +12,19 @@
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
-    <script src="vendors/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
-    <script src="./js/lib/min/sammy-latest.min.js"></script>
-    <script src="./js/lib/min/plugins/sammy.template-latest.min.js"></script>
+    <script src="./vendors/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
+    <script src="./vendors/sammy/min/sammy-latest.min.js"></script>
+    <script src="./vendors/sammy/min/plugins/sammy.template-latest.min.js"></script>
     
-    <script src="./js/index.js"></script>
-
-    <!-- sammy config -->
+    <!-- config -->
     <script src="./js/config/sammy.config.js"></script>
+    <script src="./js/config/apiConfig.js"></script>
+
+    <!-- global functionality  -->
+    <!-- <script src="./js/index.js"></script> -->
+    <script src="./js/utilities/api-utils.js"></script>
+    <script src="./js/utilities/datetime-utils.js"></script>
+    <script src="./js/utilities/form-validation-utils.js"></script>
     
     <!-- get posts  -->
     <script src="./js/getPosts/getPostsCtrl.js"></script>
@@ -27,7 +32,16 @@
     
     <!-- get post -->
     <script src="./js/getPost/getPostCtrl.js"></script>
-    <script src="./js/getPost/getPostRoute.js"></script>
+    <script src="./js/getPost/getPostRoute.js"></script>    
+
+    <!-- get post -->
+    <script src="./js/postBlog/postBlogCtrl.js"></script>
+    <script src="./js/postBlog/postBlogRoute.js"></script>    
+
+    <!-- error -->
+    <script src="./js/error/errorCtrl.js"></script>
+    <script src="./js/error/errorRoute.js"></script>
+    
   </head>
   <body>    
     <div id="main">

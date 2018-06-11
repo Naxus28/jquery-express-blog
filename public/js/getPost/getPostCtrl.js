@@ -1,33 +1,29 @@
+/**
+* AJAX GET:slug
+* @return {undefined}
+*/
 const getPost = context => {
-  context.partial('../../templates/post-detail.template');
-  // $.ajax({
-  //   url: URL,
-  //   dataType: 'json',
-  //   success: posts => {
-  //     // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
-  //     context.app.swap('');
+  const slug = window.location.hash.replace('#/blog', '');
 
-  //     // first load the submit-form template
-  //     context.partial('../templates/submit-form.template');
+  $.ajax({
+    url: `${BLOG_ENDPOINT}${slug}`,
+    dataType: 'json',
+    success: post => {
+      let publishDate = formatDateForPost(post.publishDate),
+          updatedDate = post.updatedDate && formatDateForPost(post.updatedDate);
 
-  //     // for each post fetched from the api
-  //     $.each(posts, (i, post) => {
-  //       // format dates
-  //       let { publishDate, updatedDate } = post;
-  //       publishDate = moment(publishDate).format('MMMM Do YYYY, h:mm:ss a');
-  //       updatedDate = updatedDate && moment(updatedDate).format('MMMM Do YYYY, h:mm:ss a');
+      // mutate post with formatted data
+      Object.assign(post, { publishDate, updatedDate })
 
-  //       // interpolate the variables on the template
-  //       // and append to '.blog-posts' in submit-form.template
-  //       // previously loaded into the context 
-  //       context.render('../templates/posts.template', { 
-  //         post,
-  //         publishDate,
-  //         updatedDate
-  //       })
-  //       .appendTo('.blog-posts');
-  //     });
-    // },
-    // error: handleError
-  // });
+      // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
+      context.app.swap('');
+
+      // interpolate the object and template
+      // and append to #main
+      context
+        .render('../../templates/post-detail.template', { post })
+        .appendTo(context.$element());
+    },
+    error: err => handleApiError(err, context)
+  });
 };

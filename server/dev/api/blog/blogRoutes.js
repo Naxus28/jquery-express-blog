@@ -12,8 +12,10 @@ const getRoutes = () => {
     .get(getBlogPosts)
     .post(createBlogPost);
 
-  router.route('/:id')
+   router.route('/:slug')
     .get(getBlogPost)
+
+  router.route('/:id')
     .put(updateBlogPost)
     .delete(deleteBlogPost);
 
