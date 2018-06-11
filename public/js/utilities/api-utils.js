@@ -8,17 +8,9 @@ const handleApiError = (err, context = false) => {
     ? err
     : `${err.status} ${err.responseJSON.message}`;
 
+  const errorSafeUrl = error.toLowerCase().replace(/ /g, '-' ); // replace empty space for -
 
-  context.redirect(`#/error/${error}`);  
-  // context.app.swap('');
-
-  // context
-  //   .render('../../templates/error.template', { error })
-  //   .appendTo(context.$element())
-  //   .then(content =>  {
-  //     $('.error').hide();
-  //     $('.error').show()
-  //   });
+  context.redirect(`#/error/${errorSafeUrl}`);  
 };
 
 
