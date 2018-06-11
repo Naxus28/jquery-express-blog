@@ -77,7 +77,7 @@ button.cancel-update {
   text-align: right;
 }
 
-.blog-post__post-content {
+.blog-post__content {
   line-height: 24px;
   font-size: 18px;
 }
@@ -180,9 +180,13 @@ span {
   margin-bottom: 10px;
   padding: 10px;
   text-align: left;
-  font-size: 26px;
+  font-size: 16px;
   background: #f16a5d;
   color: white;
+}
+
+.error-container__title {
+  text-align: center;
 }
 
 .bold {

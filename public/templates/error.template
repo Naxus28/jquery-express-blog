@@ -1,3 +1,8 @@
-<div class="error">
-  <%= error %>
+<div class="error-container">
+  <a href="/#/">Home</a>
+  <h1 class="error-container__title">Error</h1>
+  <div class="error">
+    <%= error %>
+  </div>
 </div>
+

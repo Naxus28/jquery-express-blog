@@ -21,8 +21,10 @@ const getPost = context => {
       // interpolate the object and template
       // and append to #main
       context
-        .render('../../templates/post-detail.template', { post })
+        .render('../../templates/post.template', { post })
         .appendTo(context.$element());
+
+      deletePost(context); // call listener for delete button
     },
     error: err => handleApiError(err, context)
   });

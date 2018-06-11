@@ -18,26 +18,33 @@ const handleApiError = (err, context = false) => {
  * AJAX DELETE 
  * @return {undefined}
  */
-const deletePost = () => {
+const deletePost = context => {
   $('body').on('click', '.delete-post', e => {
+
+    // declare delete function with ajax method
+    const del = () => {
+      const textFields = getBlogTextFields(e);
+
+       // DELETE
+      $.ajax({
+        url: `${BLOG_ENDPOINT}\/${textFields.id}`,
+        method: 'DELETE',
+        dataType: 'json',
+        headers: {
+          'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
+        },
+        data: JSON.stringify(textFields), // need to stringify to send as json
+        success: () => context.redirect('/#/'), // remove the blog node
+        error: handleApiError
+      });
+    }
+    
+    // if user confirms, delete post
     if (!confirm('This action cannot be undone. Do you want to proceed?')) {
       return;
+    } else {
+      del();
     }
 
-    const $postParent = $(e.target).closest('.blog-posts__post');
-    const textFields = getBlogTextFields(e);
-
-     // DELETE
-    $.ajax({
-      url: `${BLOG_ENDPOINT}\/${textFields.id}`,
-      method: 'DELETE',
-      dataType: 'json',
-      headers: {
-        'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
-      },
-      data: JSON.stringify(textFields), // need to stringify to send as json
-      success: () => $postParent.remove(), // remove the blog node
-      error: handleApiError
-    });
   });
 };
