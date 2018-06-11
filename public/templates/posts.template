@@ -13,7 +13,7 @@
       <span class="date bold">Published: <%= post.publishDate %></span>
 
       <% if (post.updatedDate) { %>
-        <span class="date bold">Updated: <%= post.updatedDate %></span>
+        <span class="date bold">Last update: <%= post.updatedDate %></span>
       <% } %>
     </div>
   </div>
