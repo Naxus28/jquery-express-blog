@@ -5,6 +5,10 @@
 const getPost = context => {
   const slug = window.location.hash.replace('#/blog', '');
 
+  deletePost(context); // call listener for 'delete' button
+
+  updateBlogPost(); // call listener for 'update' button
+
   $.ajax({
     url: `${BLOG_ENDPOINT}${slug}`,
     dataType: 'json',
@@ -23,8 +27,6 @@ const getPost = context => {
       context
         .render('../../templates/post.template', { post })
         .appendTo(context.$element());
-
-      deletePost(context); // call listener for delete button
     },
     error: err => handleApiError(err, context)
   });

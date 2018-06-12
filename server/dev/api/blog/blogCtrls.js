@@ -62,10 +62,12 @@ const updateBlogPost = (req, res, next) => {
 
 const deleteBlogPost = (req, res, next) => {
   BlogModel.findOneAndRemove({_id: req.params.id}, (err, blogPost) => {
-    console.log('err: ', err);
-    console.log('blogPost: ', blogPost);
     if (err) return errorHandler(err, ApiException, next);
-    res.json({message: `Blog post ${blogPost.title} was successfuly deleted.`});
+    if (!Object.keys(blogPost).length) return errorHandler({
+        message: 'Resource not found', 
+        status: 404
+      }, ApiException, next);
+    res.json({message: `Blog post was successfuly deleted.`});
   });
 };
 

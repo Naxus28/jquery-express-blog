@@ -4,7 +4,7 @@
  * @return {Object} the text fields
  */
 const getBlogTextFields = e => {
-  let $postParent = $(e.target).closest('.blog-post'),
+  let $postParent = $(e.target).closest('.post-container'),
       id = $postParent.attr('id'),
       title = $postParent.find('.blog-post__title').text(),
       author = $postParent.find('.blog-post__footer .author').text(),
