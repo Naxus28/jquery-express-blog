@@ -8,7 +8,7 @@ import colors from 'colors';
 // e.g. import config from `./${config.env}`;
 const config = {
   dev: 'development',
-  test: 'testing',
+  test: 'test',
   prod: 'production',
   port: process.env.PORT || 8080
 };
