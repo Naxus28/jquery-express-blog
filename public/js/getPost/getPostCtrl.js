@@ -5,7 +5,8 @@
 const getPost = context => {
   const slug = window.location.hash.replace('#/blog', '');
 
-  initApiListeners(context);
+  initApiListeners(context, '.blog-post');
+  initUpdateBlogListeners('.blog-post');
 
   $.ajax({
     url: `${BLOG_ENDPOINT}${slug}`,

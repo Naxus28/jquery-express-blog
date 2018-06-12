@@ -34,7 +34,7 @@ const trimContent = (content, maxLen) => {
  * @return {DOM Node(s)}
  */
 const buildPostsHTML = post => ( 
-  `<div class="post-container" id="${post._id}>
+  `<div class="post-container" id="${post._id}">
     <div class="blog-post__header">
       <h1 class="blog-post__title">${post.title}</h1>
     </div>
@@ -57,6 +57,8 @@ const buildPostsHTML = post => (
         <button class="delete delete-post">Delete</button>
       </div>
     </div>
-    <div class="get-blog-error"></div>
   </div>`   
 );
+
+
+
