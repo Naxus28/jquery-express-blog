@@ -79,7 +79,7 @@ const updateBlogPost = hiddenPostSelector => {
           </div>
 
           <div class="input-wrapper">
-            <textarea name="content" placeholder="Write your post">${content}</textarea>
+            <textarea class="update-form__textarea" name="content" placeholder="Write your post">${content}</textarea>
           </div>     
 
           <div class="buttons-container">
