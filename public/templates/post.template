@@ -1,7 +1,8 @@
 <div class="the-pit">
-  <div class=" blog-post">
+  <a href="/#/">Home</a>
+
+  <div class="blog-post">
     <div class="post-container" id="<%= post._id %>"">
-      <a href="/#/">Home</a>
       <div class="blog-post__header">
         <h1 class="blog-post__title"><%= post.title %></h1>
       </div>

@@ -100,7 +100,7 @@
 //  * @param  {jQuery Event Object} e 
 //  * @return {Object} the text fields
 //  */
-// const getBlogTextFields = e => {
+// const getBlogPostTextFields = e => {
 //   let $postParent = $(e.target).closest('.blog-posts__post'),
 //       id = $postParent.attr('id'),
 //       title = $postParent.find('.blog-posts__post-title').text(),
@@ -184,7 +184,7 @@
 //       author,
 //       title, 
 //       content
-//     } = getBlogTextFields(e);
+//     } = getBlogPostTextFields(e);
 
 //     // create form
 //     let inlineForm =  
@@ -286,7 +286,7 @@
 //     }
 
 //     const $postParent = $(e.target).closest('.blog-posts__post');
-//     const textFields = getBlogTextFields(e);
+//     const textFields = getBlogPostTextFields(e);
 
 //      // DELETE
 //     $.ajax({

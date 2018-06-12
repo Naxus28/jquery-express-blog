@@ -5,9 +5,7 @@
 const getPost = context => {
   const slug = window.location.hash.replace('#/blog', '');
 
-  deletePost(context); // call listener for 'delete' button
-
-  updateBlogPost(); // call listener for 'update' button
+  initApiListeners(context);
 
   $.ajax({
     url: `${BLOG_ENDPOINT}${slug}`,

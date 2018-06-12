@@ -174,7 +174,8 @@ span {
   margin-top: 50px;
 }
 
-.post-error {
+.post-error,
+.update-error {
   display: none;
   margin-top: 10px;
   margin-bottom: 10px;

@@ -32,7 +32,7 @@ const deletePost = context => {
 
     // declare delete function with ajax method
     function del() {
-      const textFields = getBlogTextFields(e);
+      const textFields = getBlogPostTextFields(e);
 
        // DELETE
       $.ajax({
@@ -55,40 +55,42 @@ const deletePost = context => {
  * @return {undefined}
  */
 const updateBlogPost = () => {
-  $('body').on('click', '.update', e => {
-    let $postParent = $(e.target).closest('.blog-post__post');
+  $('body')
+    .off('click', '.update')
+    .on('click', '.update', e => {
+      let $postParent = $(e.target).closest('.blog-post');
 
-    // get values from fields
-    let { 
-      id, 
-      author,
-      title, 
-      content
-    } = getBlogTextFields(e);
+      // get values from fields
+      let { 
+        id, 
+        author,
+        title, 
+        content
+      } = getBlogPostTextFields(e);
 
-    // create form
-    let inlineForm =  
-    `<div class="update-form">
-      <div class="update-error error"></div>
-      <form action="#" class="blog-update"  onsubmit="return false;" id=${id}>
-        <div class="input-wrapper">
-          <input name="author" placeholder="Author" value="${author}">
-          <input name="title" placeholder="Title" value="${title}">
-        </div>
+      // create form
+      let inlineForm =  
+      `<div class="update-form">
+        <div class="update-error error"></div>
+        <form action="#/" method="POST" class="blog-update" onsubmit="return false;" id=${id}>
+          <div class="input-wrapper">
+            <input name="author" placeholder="Author" value="${author}">
+            <input name="title" placeholder="Title" value="${title}">
+          </div>
 
-        <div class="input-wrapper">
-          <textarea name="content" placeholder="Write your post">${content}</textarea>
-        </div>     
+          <div class="input-wrapper">
+            <textarea name="content" placeholder="Write your post">${content}</textarea>
+          </div>     
 
-        <div class="buttons-container">
-          <button class="submit-update">Update Post</button>
-          <button class="cancel-update" type="button">Cancel</button>
-        </div>
-      </form>
-    </div>`;
+          <div class="buttons-container">
+            <button class="submit-update">Update Post</button>
+            <button class="cancel-update" type="button">Cancel</button>
+          </div>
+        </form>
+      </div>`;
 
-    $postParent.after(inlineForm);
-    $postParent.hide();
+      $postParent.after(inlineForm);
+      $postParent.hide();
   });
 };
 
@@ -97,7 +99,9 @@ const updateBlogPost = () => {
  * @return {undefined}
  */
 const cancelUpdateSubmission = () => {
-  $('body').on('click', '.cancel-update', e => {
+  $('body')
+  .off('click', '.cancel-update')
+  .on('click', '.cancel-update', e => {
     let $target = $(e.target),
         $form = $target.closest('.blog-update'),
         $postParent = $target.closest('.update-form').prev(),
@@ -114,42 +118,49 @@ const cancelUpdateSubmission = () => {
  * AJAX PUT 
  * @return {undefined}
  */
-const submitUpdate = () => {
+const submitUpdate = context => {
   $('body').on('submit', '.blog-update', e => {
     event.preventDefault();
+    let $form = $(e.target),
+        id = $form.attr('id'),
+        $error = $(e.target).closest('.update-form').find('.update-error'),
+        $updateForm = $('.update-form'),
+        data = $form.serializeObject();
+        incompleteFields = fieldsIncomplete(data);
 
-      let $form = $(e.target),
-          id = $form.attr('id'),
-          $error = $(e.target).closest('.update-form').find('.update-error'),
-          $updateForm = $('.blog-update'),
-          data = $form.serializeObject();
-          incompleteFields = fieldsIncomplete(data);
 
-       if (incompleteFields.length) {
-        let formattedFields = incompleteFields.length === 1
-            ? incompleteFields
-            : formatIncompleteFieldsErrorMsg(incompleteFields);
+     if (incompleteFields.length) {
+      let formattedFields = incompleteFields.length === 1
+          ? incompleteFields
+          : formatIncompleteFieldsErrorMsg(incompleteFields);
 
-        handleError(`Please enter ${formattedFields} before submitting the form.`, $error);
-        return;
-       }
+      displayFormError(`Please enter ${formattedFields} before submitting the form.`, context, '.update-error');
+      return;
+     }
 
-       // PUT
-      $.ajax({
-        url: `${BLOG_ENDPOINT}\/${id}`,
-        method: 'PUT',
-        dataType: 'json',
-        headers: {
-          'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
-        },
-        data: JSON.stringify(Object.assign(data, { id: id })), // need to stringify to send as json
-        success: posts => {
-          $('.blog-posts').prepend(buildPostsHTML([posts])); // pass the single post as an array so we can map over it on 'buildPostsHTML'
-          $error.hide();
-          $updateForm.remove();
-          $form[0].reset();
-        },
-        error: err => handleError(err)
-      });
+     // PUT
+    $.ajax({
+      url: `${BLOG_ENDPOINT}\/${id}`,
+      method: 'PUT',
+      dataType: 'json',
+      headers: {
+        'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
+      },
+      data: JSON.stringify(Object.assign(data, { id: id })), // need to stringify to send as json
+      success: post => {
+        $('.blog-post').html(buildPostsHTML(post)); 
+        $error.hide();
+        $updateForm.remove();
+        $form[0].reset();
+      },
+      error: err => handleApiError(err)
     });
+  });
+};
+
+const initApiListeners = context => {
+  deletePost(context);
+  updateBlogPost();
+  cancelUpdateSubmission();
+  submitUpdate(context);
 };

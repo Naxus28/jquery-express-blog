@@ -44,3 +44,12 @@ const formatIncompleteFieldsErrorMsg = fields => {
 
   return formattedErrorMsg;
 };
+
+
+const displayFormError = (error, context, parentClass) => {
+  context
+    .render('../../templates/form-error.template', { error })
+    .replace(parentClass);
+
+    $(parentClass).show();
+};
