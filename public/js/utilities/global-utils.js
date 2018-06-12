@@ -34,30 +34,29 @@ const trimContent = (content, maxLen) => {
  * @return {DOM Node(s)}
  */
 const buildPostsHTML = post => ( 
-  `
-    <div class="post-container" id="${post._id}>
-      <div class="blog-post__header">
-        <h1 class="blog-post__title">${post.title}</h1>
-      </div>
+  `<div class="post-container" id="${post._id}>
+    <div class="blog-post__header">
+      <h1 class="blog-post__title">${post.title}</h1>
+    </div>
 
-      <h3 class="blog-post__author">
-        ${post.author}
-      </h3>
-      <p class="blog-post__content">
-        ${post.content}
-      </p>
-      <div class="blog-post__dates-container">
-        <span class="date">Published: ${post.publisheDate}</span>
-        <% if (${post.updatedDate}) { %>
-          <span class="date">Last update: ${post.updatedDate}</span>
-        <% } %>
+    <h3 class="blog-post__author">
+      ${post.author}
+    </h3>
+    <p class="blog-post__content">
+      ${post.content}
+    </p>
+    <div class="blog-post__dates-container">
+      <span class="date">Published: ${formatDateForPost(post.publishDate)}</span>
+      ${post.updatedDate &&
+        `<span class="date">Last update: ${formatDateForPost(post.updatedDate)}</span>`
+      }
+    </div>
+    <div class="blog-post__footer">
+      <div class="blog-post__actions-buttons-container">
+        <button class="update">Update</button>
+        <button class="delete delete-post">Delete</button>
       </div>
-      <div class="blog-post__footer">
-        <div class="blog-post__actions-buttons-container">
-          <button class="update">Update</button>
-          <button class="delete delete-post">Delete</button>
-        </div>
-      </div>
-      <div class="get-blog-error"></div>
-    </div>`   
+    </div>
+    <div class="get-blog-error"></div>
+  </div>`   
 );

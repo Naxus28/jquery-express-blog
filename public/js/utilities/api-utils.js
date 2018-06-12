@@ -54,11 +54,11 @@ const deletePost = context => {
  * HANDLES CLICKS ON 'UPDATE' BUTTON (NOT SUBMISSION) 
  * @return {undefined}
  */
-const updateBlogPost = () => {
+const updateBlogPost = hiddenPostSelector => {
   $('body')
     .off('click', '.update')
     .on('click', '.update', e => {
-      let $postParent = $(e.target).closest('.blog-post');
+      let $postParent = $(e.target).closest(hiddenPostSelector);
 
       // get values from fields
       let { 
@@ -118,12 +118,12 @@ const cancelUpdateSubmission = () => {
  * AJAX PUT 
  * @return {undefined}
  */
-const submitUpdate = context => {
+const submitUpdate = (context, hiddenPostSelector) => {
   $('body').on('submit', '.blog-update', e => {
     event.preventDefault();
+    
     let $form = $(e.target),
         id = $form.attr('id'),
-        $error = $(e.target).closest('.update-form').find('.update-error'),
         $updateForm = $('.update-form'),
         data = $form.serializeObject();
         incompleteFields = fieldsIncomplete(data);
@@ -148,10 +148,11 @@ const submitUpdate = context => {
       },
       data: JSON.stringify(Object.assign(data, { id: id })), // need to stringify to send as json
       success: post => {
-        $('.blog-post').html(buildPostsHTML(post)); 
-        $error.hide();
         $updateForm.remove();
         $form[0].reset();
+        $(hiddenPostSelector)
+          .html(buildPostsHTML(post))
+          .show(); 
       },
       error: err => handleApiError(err)
     });
@@ -160,7 +161,7 @@ const submitUpdate = context => {
 
 const initApiListeners = context => {
   deletePost(context);
-  updateBlogPost();
+  updateBlogPost('.blog-post');
   cancelUpdateSubmission();
-  submitUpdate(context);
+  submitUpdate(context, '.blog-post');
 };
