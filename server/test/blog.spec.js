@@ -2,9 +2,9 @@
  * https://github.com/mochajs/mocha/wiki
  * https://github.com/mochajs/mocha/wiki/compilers-deprecation
  * mocha needs to transpile es6 so
- * the npm script that runs mocha (npm test)
- * needed to install several modules as devDependencies although they already were in the dependencies 
- * mocha apparently cannot find them relative to the root directory if they are not in devDependencies
+ * the npm script that runs mocha (npm test) passes code through babel-register
+ * Needed to install several modules as devDependencies although they were already in dependencies 
+ * Apparently, mocha cannot find modules relative to the root directory if they are not in devDependencies
  * TODO: look into this--it doesn't make much sense
  * https://github.com/mochajs/mocha/issues/3092
  */
@@ -29,7 +29,7 @@ chai.use(chaiHttp);
 /** 
 * https://mochajs.org/#arrow-functions
 * Passing arrow functions (“lambdas”) to Mocha is discouraged. 
-* Lambdas lexically bind this and cannot access the Mocha context.
+* Lambdas lexically bind 'this' and cannot access the Mocha context.
 */
 
 /**
@@ -50,12 +50,8 @@ before(function() {
     )
 });
   
-// remove collection after each test
-// afterEach(function() {
 
-// });
-
-// remove collection after each test  and close connection after all tests
+// remove collection after test suite and close connection
 after(function() {
   mongoose.connection.db.dropCollection('blogposts', function(err, result) {
     console.log('dropping blogposts collection: ', result);
@@ -146,7 +142,8 @@ describe('===BLOG API===', function() {
   // PUT BLOG 
   describe('/PUT/:id blog', function() {
     it('should UPDATE a blog post', function(done) {
-      // mock a new blog post
+      
+      // mock a new blog post--title must be unique
       const blog = {
         author: 'John Doe', 
         title: 'My Third Blog Post', 
@@ -191,7 +188,8 @@ describe('===BLOG API===', function() {
   // DELETE BLOG 
   describe('/DELETE/:id blog', function() {
     it('should DELETE a blog post', function(done) {
-      // mock a new blog post
+      
+      // mock a new blog post--title must be unique
       const blog = {
         author: 'John Doe', 
         title: 'My Fourth Blog Post', 
