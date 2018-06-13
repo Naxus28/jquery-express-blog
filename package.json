@@ -1,7 +1,7 @@
 {
   "name": "jquery-express-blog",
   "version": "1.0.0",
-  "description": "A blog built with a jquery client and an express API",
+  "description": "A blog built with jquery client, sammyjs router, and express API",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf node_modules && npm run clean:server && npm run clean:client",
