@@ -24,9 +24,14 @@ const getBlogPosts = (req, res, next) => {
     });
 };
 
+/**
+ * get blog by slug retrieved from the friendly url displayed to the user
+ * @param  {Object} req  
+ * @param  {[Object res  
+ * @param  {Function} next 
+ * @return {undefined}        
+ */
 const getBlogPost = (req, res, next) => {
-  // get blog by slug retrieved from the friendly url
-  // displayed to the user
   BlogModel.find({slug: req.params.slug}, (err, blogPost) => {
     if (err) return errorHandler(err, ApiException, next);
     if (!blogPost.length) {

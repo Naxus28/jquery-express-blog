@@ -1,6 +1,6 @@
 import { ApiException } from '../errorHandlers/exceptionClasses';
 /**
- * checks if api request is missing mandatory params
+ * check if api request is missing mandatory params
  * @param  {Object} items the post object
  * @return missingItems | throws exception
  */
