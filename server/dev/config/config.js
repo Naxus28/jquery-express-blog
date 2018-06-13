@@ -7,17 +7,10 @@ import colors from 'colors';
 // directory path based on the environment
 // e.g. import config from `./${config.env}`;
 const config = {
-  dev: 'development',
-  test: 'testing',
-  prod: 'production',
-  port: process.env.PORT || 8080
+  port: process.env.PORT || 8080,
+  env: process.env.NODE_ENV || 'development'
 };
 
-// set node env and config.env based on node env
-process.env.NODE_ENV = process.env.NODE_ENV || config.dev;
-
-// add the env key/value to the config object
-config.env = process.env.NODE_ENV;
 
 let envConfig = {};
 

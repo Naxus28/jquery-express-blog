@@ -1,5 +1,5 @@
 node_modules
 public/vendors
 dist
-public/vendors
+public/vendors/bower_components
 
