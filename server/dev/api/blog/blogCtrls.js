@@ -1,5 +1,6 @@
 import BlogModel from './blogModel';
 import { ApiException } from '../../errorHandlers/exceptionClasses';
+import { errorHandler } from '../apiHelpers';
 
 let blogPostParam = (req, res, next, id) => { 
   BlogModel.findById(id, (err, blogPost) => {
@@ -76,9 +77,7 @@ const deleteBlogPost = (req, res, next) => {
   });
 };
 
-const errorHandler = (err, Exception, next) => {
-  next(new Exception(err.message, err.status));
-};
+
 
 
 export {

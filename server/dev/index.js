@@ -11,6 +11,7 @@ import errorHandlerMiddleware from './middleware/errorHandlerMiddleware';
 
 // routes
 import blogRoutes from './api/blog/blogRoutes';
+import userRoutes from './api/user/userRoutes';
 
 // start db
 mongoose.connect(config.db.url)
@@ -23,6 +24,7 @@ const app = express();
 
 appMiddleware(app, express);
 blogRoutes(app);
+userRoutes(app);
 fourZeroFour(app);
 errorHandlerMiddleware(app);
 

@@ -1,4 +1,16 @@
 import { ApiException } from '../errorHandlers/exceptionClasses';
+
+/**
+ * handles errors generated in api controllers
+ * @param  {Object} err   
+ * @param  {Class} Exception 
+ * @param  {Function} next     
+ * @return {undefined}            
+ */
+const errorHandler = (err, Exception, next) => {
+  next(new Exception(err.message, err.status));
+};
+
 /**
  * check if api request is missing mandatory params
  * @param  {Object} items the post object
@@ -18,6 +30,10 @@ const validateApiRequest = (items) => {
   }
 };
 
+
+
 export {
+  errorHandler,
   validateApiRequest
 };
+
