@@ -8,7 +8,6 @@ import {
   deleteBlogPost
 } from './blogCtrls';
 
-const getRoutes = () => {
   router.route('/')
     .get(getBlogPosts)
     .post(createBlogPost);
@@ -20,7 +19,5 @@ const getRoutes = () => {
     .put(updateBlogPost)
     .delete(deleteBlogPost);
 
-  return router;
-};
 
-export default app => app.use('/blog', getRoutes());
+export default router;

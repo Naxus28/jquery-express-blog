@@ -8,5 +8,4 @@ router.route('/')
   .get(getUsers) 
   .post(addUser);
 
-
-  export default app => app.use('/user', router);
+  export default router;

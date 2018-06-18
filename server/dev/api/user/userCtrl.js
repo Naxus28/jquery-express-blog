@@ -22,7 +22,6 @@ const getUsers = (req, res, next) => {
     });
 };
 
-
 export {
   addUser,
   getUsers

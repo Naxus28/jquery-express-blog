@@ -9,9 +9,8 @@ import appMiddleware from './middleware/appMiddleware';
 import fourZeroFour from './api/fourZeroFour';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware';
 
-// routes
-import blogRoutes from './api/blog/blogRoutes';
-import userRoutes from './api/user/userRoutes';
+// api
+import api from './api/api.js';
 
 // start db
 mongoose.connect(config.db.url)
@@ -23,8 +22,7 @@ mongoose.connect(config.db.url)
 const app = express();
 
 appMiddleware(app, express);
-blogRoutes(app);
-userRoutes(app);
+api(app);
 fourZeroFour(app);
 errorHandlerMiddleware(app);
 
