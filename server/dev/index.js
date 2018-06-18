@@ -6,7 +6,7 @@ import config from './config/config';
 
 // middleware
 import appMiddleware from './middleware/appMiddleware';
-import fourZeroFour from './api/fourZeroFour';
+import fourZeroFour from './api/fourZeroFour/fourZeroFour';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware';
 
 // api

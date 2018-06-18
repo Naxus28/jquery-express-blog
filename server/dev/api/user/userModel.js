@@ -47,7 +47,7 @@ const User = new mongoose.Schema({
 // and avoid losing access to 'this' 
 User.methods = {
   verifyPassword: function(password) {
-    bcrypt.compare(password, this.password);
+    return bcrypt.compareSync(password, this.password);
   },
 
   // return user without password after saving user

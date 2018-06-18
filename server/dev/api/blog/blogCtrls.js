@@ -1,6 +1,6 @@
 import BlogModel from './blogModel';
 import { ApiException } from '../../errorHandlers/exceptionClasses';
-import { errorHandler } from '../apiHelpers';
+import { errorHandler } from '../helpers/apiHelpers';
 
 let blogPostParam = (req, res, next, id) => { 
   BlogModel.findById(id, (err, blogPost) => {

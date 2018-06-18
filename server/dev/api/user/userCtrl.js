@@ -1,6 +1,6 @@
 import User from './userModel';
 import { ApiException } from '../../errorHandlers/exceptionClasses';
-import { errorHandler } from '../apiHelpers';
+import { errorHandler } from '../helpers/apiHelpers';
 
 const addUser = (req, res, next) => {
   // hash the password and put it back on req.body
