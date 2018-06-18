@@ -22,7 +22,6 @@ const jwtOptions = {
 };
 
 const jwtStrategy = new JwtStrategy(jwtOptions, (jwtPayload, done) => {
-  console.log('jwtPayload: ', jwtPayload) 
   done(null, jwtPayload);
 });
 
