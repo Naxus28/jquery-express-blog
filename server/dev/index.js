@@ -9,9 +9,6 @@ import appMiddleware from './middleware/appMiddleware';
 import fourZeroFour from './api/fourZeroFour/fourZeroFour';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware';
 
-// passport.use middleware
-import passportAuthStrategies from './api/auth/auth';
-
 // api
 import api from './api/api.js';
 
@@ -25,9 +22,6 @@ mongoose.connect(config.db.url)
 const app = express();
 
 appMiddleware(app, express);
-// strategies have to be placed before routes
-// because routes use strategis via passport.authenticate('strategyName')
-passportAuthStrategies(); 
 api(app);
 fourZeroFour(app);
 errorHandlerMiddleware(app);

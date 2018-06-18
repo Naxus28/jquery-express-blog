@@ -12,6 +12,6 @@ router.route('/')
   .post(addUser);
 
 router.route('/:id')
-  .get(jwtAuth, getUser)
+  .get(jwtAuth, getUser) // this get request needs to send jwt in the header, otherwise resource is not sent back to client
 
 export default router;
