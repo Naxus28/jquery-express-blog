@@ -8,16 +8,16 @@ import {
   deleteBlogPost
 } from './blogCtrls';
 
-  router.route('/')
-    .get(getBlogPosts)
-    .post(createBlogPost);
+router.route('/')
+  .get(getBlogPosts)
+  .post(createBlogPost);
 
-   router.route('/:slug')
-    .get(getBlogPost)
+ router.route('/:slug')
+  .get(getBlogPost)
 
-  router.route('/:id')
-    .put(updateBlogPost)
-    .delete(deleteBlogPost);
+router.route('/:id')
+  .put(updateBlogPost)
+  .delete(deleteBlogPost);
 
 
 export default router;
