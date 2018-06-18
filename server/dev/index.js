@@ -26,7 +26,6 @@ api(app);
 fourZeroFour(app);
 errorHandlerMiddleware(app);
 
-
 app.listen(config.port, () =>
   console.log(`Server listening at ${config.url}`));
 

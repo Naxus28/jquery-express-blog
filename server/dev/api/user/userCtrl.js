@@ -4,7 +4,7 @@ import { errorHandler } from '../apiHelpers';
 
 const addUser = (req, res, next) => {
   // hash the password and put it back on req.body
-  req.body.password = User.hashPassword(req.body.password.toString());
+  req.body.password = User.hashPassword(req.body.password);
 
    new User(req.body)
     .save((err, user) => {
