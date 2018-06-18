@@ -1,5 +1,9 @@
 import passport from 'passport';
-import localStrategy from './login/strategy';
+import { 
+  jwtStrategy, 
+  localStrategy 
+} from './login/strategies';
+
 import loginRoute from './login/loginRoute';
 
 // set strategies first

@@ -47,21 +47,25 @@ const User = new mongoose.Schema({
 // and avoid losing access to 'this' 
 User.methods = {
   verifyPassword: function(password) {
-    return bcrypt.compareSync(password, this.password);
+    // for async comparison use 'compare' and handle promise with '.then'
+    return bcrypt.compareSync(password, this.password);  
   },
 
-  // return user without password after saving user
+  // return user without password after saving document
   serializeResponse: function(user) {
     // need to convert mongodb document into an object to be able to delete key
-    const thisUser = user.toObject(); 
-    delete thisUser.password;
+    const updatedUser = user.toObject(); 
+    delete updatedUser.password;
 
-    return thisUser;
+    return updatedUser;
   },
 };
 
 // static--same for all instances
-User.statics.hashPassword = password => bcrypt.hashSync(password, saltRounds);
+// use hashSync to avoid handling promises
+// NOTE: perhaps it would be better to use async method 
+// and handle the hashed password in the 'then' method to avoid blocking I/O
+User.statics.hashPassword = password => bcrypt.hashSync(password, saltRounds); 
 
 export default mongoose.model('User', User);
 

@@ -1,3 +1,6 @@
+import { createJwt } from '../helpers/helpers';
+
 export default (req, res) => {
-  res.json(req.body)
+  const jwt = createJwt(req.user.email);
+  res.json({ jwt });
 };
