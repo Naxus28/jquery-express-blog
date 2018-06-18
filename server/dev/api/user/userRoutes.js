@@ -1,27 +1,12 @@
 const router = require('express').Router();
-import User from './userModel';
-import { ApiException } from '../../errorHandlers/exceptionClasses';
-import { errorHandler } from '../apiHelpers';
+import {
+  addUser,
+  getUsers
+} from './userCtrl';
 
 router.route('/')
-  .get((req, res, next) => {
-    User.find({})
-      .select('-password') // removes password from returned query
-      .exec((err, user) => {
-        if (err) return errorHandler(err, ApiException, next);
-        res.json(user);
-      });
-  }) 
-  .post((req, res, next) => {
-    // hash the password and put it back on req.body
-    req.body.password = User.hashPassword(req.body.password.toString());
-
-     new User(req.body)
-      .save((err, user) => {
-        if (err) return errorHandler(err, ApiException, next);
-        res.json(user.serializeResponse(user));
-      });
-  });
+  .get(getUsers) 
+  .post(addUser);
 
 
   export default app => app.use('/user', router);

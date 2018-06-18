@@ -54,9 +54,5 @@ User.methods = {
 // static--same for all instances
 User.statics.hashPassword = password => bcrypt.hashSync(password, saltRounds);
 
-
-
-
-
 export default mongoose.model('User', User);
 
