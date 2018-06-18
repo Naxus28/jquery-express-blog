@@ -19,5 +19,4 @@ router.route('/:id')
   .put(updateBlogPost)
   .delete(deleteBlogPost);
 
-
 export default router;

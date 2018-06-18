@@ -8,4 +8,4 @@ router.route('/')
   .get(getUsers) 
   .post(addUser);
 
-  export default router;
+export default router;
