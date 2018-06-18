@@ -3,12 +3,12 @@ import blogRoutes from './blog/blogRoutes';
 import loginRoutes from './login/loginRoutes';
 
 // passport.use middleware
-import passportAuthStrategies from './auth/auth';
+import authStrategies from './auth/strategies';
 
 export default app => {
   // strategies have to be placed before routes
   // because routes use strategis via passport.authenticate('strategyName')
-  passportAuthStrategies();
+  authStrategies();
 
   app.use('/user', userRoutes);
   app.use('/blog', blogRoutes);

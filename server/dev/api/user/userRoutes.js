@@ -1,5 +1,5 @@
 const router = require('express').Router();
-import { jwtAuth } from '../auth/middleware/authenticate';
+import { jwtAuth } from '../auth/authenticate';
 
 import {
   addUser,

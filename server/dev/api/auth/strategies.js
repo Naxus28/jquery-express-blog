@@ -1,11 +1,12 @@
+import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { 
   Strategy as JwtStrategy,
   ExtractJwt 
 } from 'passport-jwt';
 
-import User from '../../user/userModel';
-import config from '../../../config/config';
+import User from '../user/userModel';
+import config from '../../config/config';
 
 
 /* Passport jwt strategy
@@ -61,9 +62,9 @@ const localStrategy = new LocalStrategy({
     });
 });
 
-
-
-export {
-  jwtStrategy,
-  localStrategy
+// export strategies to be set globally on api.js
+export default () => {
+  passport.use(localStrategy);
+  passport.use(jwtStrategy);
 };
+
