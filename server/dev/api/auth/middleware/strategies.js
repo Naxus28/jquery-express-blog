@@ -6,7 +6,6 @@ import {
 
 import User from '../../user/userModel';
 import config from '../../../config/config';
-import authHelpers from '../helpers/helpers';
 
 
 /* Passport jwt strategy
@@ -22,7 +21,8 @@ const jwtOptions = {
 };
 
 const jwtStrategy = new JwtStrategy(jwtOptions, (jwtPayload, done) => {
-  
+  console.log('jwtPayload: ', jwtPayload) 
+  done(null, jwtPayload);
 });
 
 
@@ -60,9 +60,6 @@ const localStrategy = new LocalStrategy({
       return done(null, user);
     });
 });
-
-
-
 
 
 

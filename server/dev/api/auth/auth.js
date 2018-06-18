@@ -1,13 +1,11 @@
 import passport from 'passport';
-import { 
-  jwtStrategy, 
-  localStrategy 
-} from './login/strategies';
+import { jwtStrategy, localStrategy } from './middleware/strategies';
 
-import loginRoute from './login/loginRoute';
+// set strategy first before 
+// using route
 
-// set strategies first
-passport.use(localStrategy);
+export default () => {
+  passport.use(localStrategy);
+  passport.use(jwtStrategy);
+};
 
-// export for those strategies
-export default loginRoute;

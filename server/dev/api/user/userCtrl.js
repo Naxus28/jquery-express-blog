@@ -22,7 +22,17 @@ const getUsers = (req, res, next) => {
     });
 };
 
+const getUser = (req, res, next) => {
+  User.findOne({_id: req.params.id})
+    .select('-password') // removes password from returned query
+    .exec((err, user) => {
+      if (err) return errorHandler(err, ApiException, next);
+      res.json(user); 
+    });
+};
+
 export {
   addUser,
-  getUsers
+  getUsers,
+  getUser
 };
