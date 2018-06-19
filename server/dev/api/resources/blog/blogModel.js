@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
 
-const BlogPost = new mongoose.Schema({
-  author: {
-    type: String,
-    required: 'Author\'s name is mandatory',
+const Schema = mongoose.Schema;
+
+const BlogPost = new Schema({
+  author: { 
+    type: Schema.Types.ObjectId, 
+    ref: 'User',
+    required: 'Blogposts must belong to an author.'
   },
   title: {
     type: String,
@@ -12,12 +15,12 @@ const BlogPost = new mongoose.Schema({
   },
   slug: {
     type: String,
-    required: 'Slug is mandatory',
-    unique: 'A slug for this title has already been used'
+    required: 'Slug is mandatory.',
+    unique: 'A slug for this title has already been used.'
   },
   content: {
     type: String,
-    required: 'Content is mandatory'
+    required: 'Content is mandatory.'
   },
   publishDate: {
     type: Date,

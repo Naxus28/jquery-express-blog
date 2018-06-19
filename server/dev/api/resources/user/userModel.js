@@ -8,15 +8,15 @@ import bcrypt from 'bcrypt';
 // with increasing computation power.
 const saltRounds = 10;
 
-const User = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const User = new Schema({
   firstName: {
     type: String,
-    required: 'First name is mandatory',
     trim: true
   },
   lastName: {
     type: String,
-    required: 'Last name is mandatory',
     trim: true
   },
   middleName: {
@@ -25,8 +25,8 @@ const User = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: 'Email is mandatory',
-    unique: 'This email is already registered',
+    required: 'Email is mandatory.',
+    unique: 'This email is already registered.',
     trim: true
   },
   password: {
@@ -37,7 +37,11 @@ const User = new mongoose.Schema({
   age: {
     type: Number,
     trim: true
-  }
+  },
+  blogPosts:[{
+    type: Schema.Types.ObjectId,
+    ref: 'BlogPost'
+  }]
 });
 
 // http://mongoosejs.com/docs/2.7.x/docs/methods-statics.html

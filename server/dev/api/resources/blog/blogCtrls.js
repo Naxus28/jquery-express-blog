@@ -1,4 +1,5 @@
 import BlogModel from './blogModel';
+import User from '../user/userModel';
 import { ApiException } from '../../../errorHandlers/exceptionClasses';
 import { errorHandler } from '../../helpers/apiHelpers';
 
@@ -18,10 +19,17 @@ let blogPostParam = (req, res, next, id) => {
 const getBlogPosts = (req, res, next) => {
   BlogModel
     .find({})
-    .sort({ publishDate: 'desc'})
-    .exec((err, blogPost) => {
+    .sort({publishDate: 'desc'})
+    .exec((err, blogPosts) => {
       if (err) return errorHandler(err, ApiException, next);
-      res.json(blogPost);
+
+      if (!blogPosts.length) {
+        return errorHandler({
+          message: 'Resources not found', 
+          status: 404
+        }, ApiException, next);
+      } 
+      res.json(blogPosts);
     });
 };
 
@@ -33,15 +41,23 @@ const getBlogPosts = (req, res, next) => {
  * @return {undefined}        
  */
 const getBlogPost = (req, res, next) => {
-  BlogModel.find({slug: req.params.slug}, (err, blogPost) => {
+  BlogModel
+  .findOne({slug: req.params.slug})
+    // the name in populate() is the property created in the blogModel('user'), 
+    // not the name given to the user model object ('User')
+    // check http://mongoosejs.com/docs/populate.html
+    // check https://medium.com/@nicknauert/mongooses-model-populate-b844ae6d1ee7
+  .populate('user')
+  .exec((err, blogPost) => {
     if (err) return errorHandler(err, ApiException, next);
-    if (!blogPost.length) {
+    
+    if (!blogPost) {
       return errorHandler({
         message: 'Resource not found', 
         status: 404
       }, ApiException, next);
     } 
-    res.json(blogPost[0]); // return the first (only) element of the array so the frontend gets the object instead of an array
+    res.json(blogPost);
   });
 };
 
@@ -53,6 +69,16 @@ const createBlogPost = (req, res, next) => {
 
   newBlogPost.save((err, blogPost) => {
     if (err) return errorHandler(err, ApiException, next);
+
+    console.log('blogPost._id: ', blogPost._id);
+
+    // POST to /blog needs to have the user id (req.body.user = user._id)
+    // so we can add the post id to the user document
+    // 'user' is a mandatory value in blogModel 
+    User.findOneAndUpdate({_id: req.body.author}, {$push: {blogPosts: blogPost._id}}, (err, user) => {
+      if (err) return errorHandler(err, ApiException, next);
+    });
+
     res.json(blogPost);
   });
 };
