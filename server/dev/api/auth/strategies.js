@@ -30,7 +30,7 @@ const jwtOptions = {
  */
 const jwtStrategy = new JwtStrategy(jwtOptions, (jwtPayload, done) => {
   // jwtPayload is the decoded jwt
-  // done(null, jwtPayload); 
+  done(null, jwtPayload); 
 });
 
 
