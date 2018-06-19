@@ -20,7 +20,7 @@ const getBlogPosts = (req, res, next) => {
   BlogModel
     .find({})
     .sort({publishDate: 'desc'})
-    .populate('author', 'email -_id')
+    .populate('author', 'email -_id') // populats blog with 'author: {email: 'some@email.com'}'
     .exec((err, blogPosts) => {
       if (err) return errorHandler(err, ApiException, next);
 
@@ -31,7 +31,14 @@ const getBlogPosts = (req, res, next) => {
         }, ApiException, next);
       } 
 
-      console.log('blogPosts: ', blogPosts);
+      // try to find a native way to
+      // do this on mongoose
+      blogPosts = blogPosts.map(post => {
+        post = post.toObject();
+        post.author = post.author.email;
+        return post;
+      })
+
       res.json(blogPosts);
     });
 };
@@ -50,7 +57,7 @@ const getBlogPost = (req, res, next) => {
     // not the name given to the user model object ('User')
     // check http://mongoosejs.com/docs/populate.html
     // check https://medium.com/@nicknauert/mongooses-model-populate-b844ae6d1ee7
-  .populate('author')
+  .populate('author', 'email -_id')
   .exec((err, blogPost) => {
     if (err) return errorHandler(err, ApiException, next);
     
@@ -60,6 +67,10 @@ const getBlogPost = (req, res, next) => {
         status: 404
       }, ApiException, next);
     } 
+
+    // find a native way to do this using mongoose
+    blogPost = blogPost.toObject();
+    blogPost.author = blogPost.author.email
     res.json(blogPost);
   });
 };
