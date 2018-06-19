@@ -1,5 +1,5 @@
 export default {
-  logging: true,
+  logging: false,
   db: {
     url: process.env.MONGODB_URI // check heroku env variables
   },

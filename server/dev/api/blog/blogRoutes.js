@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 import {
   getBlogPosts,
   getBlogPost,
@@ -7,19 +8,15 @@ import {
   deleteBlogPost
 } from './blogCtrls';
 
-const getRoutes = () => {
-  router.route('/')
-    .get(getBlogPosts)
-    .post(createBlogPost);
+router.route('/')
+  .get(getBlogPosts)
+  .post(createBlogPost);
 
-   router.route('/:slug')
-    .get(getBlogPost)
+ router.route('/:slug')
+  .get(getBlogPost)
 
-  router.route('/:id')
-    .put(updateBlogPost)
-    .delete(deleteBlogPost);
+router.route('/:id')
+  .put(updateBlogPost)
+  .delete(deleteBlogPost);
 
-  return router;
-};
-
-export default app => app.use('/blog', getRoutes());
+export default router;

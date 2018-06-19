@@ -6,11 +6,11 @@ import config from './config/config';
 
 // middleware
 import appMiddleware from './middleware/appMiddleware';
-import fourZeroFour from './api/fourZeroFour';
+import fourZeroFour from './api/fourZeroFour/fourZeroFour';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware';
 
-// routes
-import blogRoutes from './api/blog/blogRoutes';
+// api
+import api from './api/api.js';
 
 // start db
 mongoose.connect(config.db.url)
@@ -22,10 +22,9 @@ mongoose.connect(config.db.url)
 const app = express();
 
 appMiddleware(app, express);
-blogRoutes(app);
+api(app);
 fourZeroFour(app);
 errorHandlerMiddleware(app);
-
 
 app.listen(config.port, () =>
   console.log(`Server listening at ${config.url}`));
