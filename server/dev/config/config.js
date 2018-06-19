@@ -11,12 +11,13 @@ const config = {
 
 let envConfig = {};
 
-// values match config files
+// config.env values will match config files
 // e.g. ./development, ./production
 // so we can require different configs using the
 // directory path based on the environment
 // e.g. import config from `./${config.env}`;
 // there will be an error if the file doesn't exist
+// so we use try/catch because this is a synchronous operation
 try {
   envConfig = require(`./${config.env}`).default || {};
 } catch(e) {
