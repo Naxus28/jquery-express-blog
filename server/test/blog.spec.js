@@ -10,11 +10,10 @@
  */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-
-import app from '../dev/index';
-
-// connect with mongo db
 import mongoose from 'mongoose';
+
+// app
+import app from '../dev/index';
 
 // config
 import config from '../dev/config/config'
@@ -34,7 +33,7 @@ chai.use(chaiHttp);
 
 /**
  * https://github.com/chaijs/chai-http
- * When passing an app to request; it will automatically open the server 
+ * When passing an app to request it will automatically open the server 
  * for incoming requests (by calling listen()) and, once a request has been made 
  * the server will automatically shut down (by calling .close()). 
  * If you want to keep the server open, perhaps if you're making multiple requests, 
@@ -45,13 +44,13 @@ chai.use(chaiHttp);
 before(function() {
   mongoose.connect(config.db.url)
     .then(
-      conn => console.log('Mongoose connected'),
+      conn => console.log(`Mongoose connected on ${config.db.url}`),
       err => console.log(`Mongoose error: ${err}`)
     )
 });
   
 
-// remove collection after test suite and close connection
+// remove blogposts collection after tests are done, and close connection
 after(function() {
   mongoose.connection.db.dropCollection('blogposts', function(err, result) {
     console.log('dropping blogposts collection: ', result);
@@ -70,7 +69,7 @@ describe('===BLOG API===', function() {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('array');
-          res.body.length.should.be.eql(0);
+          res.body.length.should.be.eql(0); // no blogposts at this point
           done();
         });
     });
@@ -111,13 +110,14 @@ describe('===BLOG API===', function() {
         content: 'I love Node...'
       };
 
-      // post blog then get it by id
+      // post blog then get it by slug
       chai.request(app)
         .post(endPoint)
         .send(newblog)
         .end((err, res) => {
 
-          // get by slug--this provides user friendly urls (slug is created from title, which must be unique)
+          // get by slug--using slugs to create user friendly urls 
+          // slug is created from title, which must be unique
           chai.request(app)
             .get(`${endPoint}\/${res.body.slug}`) // need to escape '/'
             .end((err, res) => {
