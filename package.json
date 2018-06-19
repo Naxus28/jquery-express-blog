@@ -15,7 +15,8 @@
     "serve:prod": " NODE_ENV=production node server/dist/index",
     "start:dev": "npm run build:client && npm run serve:dev",
     "serve:dev": "PORT=8080 nodemon server/dev/index --exec babel-node",
-    "start:debug": "PORT=8080 && npm run build:client && nodemon --inspect server/dev/index --exec babel-node",
+    "start:debug-inspect": "PORT=8080 && npm run build:client && nodemon --inspect server/dev/index --exec babel-node",
+    "start:debug": "PORT=8080 && npm run build:client && DEBUG=express* nodemon server/dev/ --exec babel-node",
     "test": "PORT=5000 NODE_ENV=testing mocha server/test --require babel-register --exit",
     "postinstall": "npm run bower:install"
   },
