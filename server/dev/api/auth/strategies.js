@@ -50,11 +50,11 @@ const localStrategy = new LocalStrategy({
         // if using passport's flashing message, pass a third argument
         // as such: done({ message: 'Account not found.' }, false, { message: 'Account not found.' })
         // see docs http://www.passportjs.org/docs/configure/
-        return done({ message: 'Account not found.' }, false);
+        return done({ message: 'Username and password do not match.' }, false);
       }
 
       if (!user.verifyPassword(password)) {
-        return done({ message: 'Incorrect password.' }, false);
+        return done({ message: 'Username and password do not match.' }, false);
       }
 
       return done(null, user);
