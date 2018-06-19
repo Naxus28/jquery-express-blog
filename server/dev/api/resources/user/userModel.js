@@ -52,7 +52,8 @@ const User = new Schema({
 User.methods = {
   verifyPassword: function(password) {
     // for async comparison use 'compare' and handle promise with '.then'
-    return bcrypt.compareSync(password, this.password);  
+    // the function expects a string (it breaks if it is not a string: "data and hash must be strings")
+    return bcrypt.compareSync(password.toString(), this.password);  
   },
 
   // return user without password after saving document

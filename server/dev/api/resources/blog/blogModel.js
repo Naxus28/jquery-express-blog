@@ -6,7 +6,7 @@ const BlogPost = new Schema({
   author: { 
     type: Schema.Types.ObjectId, 
     ref: 'User',
-    required: 'Blogposts must belong to an author.'
+    required: 'Blogposts must belont to a user.'
   },
   title: {
     type: String,

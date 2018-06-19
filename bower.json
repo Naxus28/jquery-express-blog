@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery-serialize-object": "^2.5.0"
-  }
+    "jquery-serialize-object": "2.5.0"
+  },
+  ""
 }

@@ -31,6 +31,7 @@ const addUser = (req, res, next) => {
 const getUsers = (req, res, next) => {
   User.find({})
     .select('-password') // removes password from returned query
+    .populate('blogPosts')
     .exec((err, user) => {
       if (err) return errorHandler(err, ApiException, next);
       res.json(user);
@@ -51,6 +52,7 @@ const getUsers = (req, res, next) => {
 const getUser = (req, res, next) => {
   User.findOne({_id: req.params.id})
     .select('-password') // removes password from returned query
+    .populate('blogPosts')
     .exec((err, user) => {
       if (err) return errorHandler(err, ApiException, next);
       res.json(user); 
