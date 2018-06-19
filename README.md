@@ -1,14 +1,13 @@
 # Blog
 
-This blog is a SPA built with jquery and sammyjs. The API is built with node-express. The app uses passport for authentication.
+This blog is a SPA built with jquery and sammyjs. The API is built with node-express. 
 
-To create unit tests for the http layer we use [`mocha`](https://mochajs.org/), [`chai`](http://www.chaijs.com), and [`chai-http`](http://www.chaijs.com/plugins/chai-http/)
+I used [`passportjs`](http://www.passportjs.org/) for authentication.
+
+To create unit tests for the http layer I used [`mocha`](https://mochajs.org/), [`chai`](http://www.chaijs.com), and [`chai-http`](http://www.chaijs.com/plugins/chai-http/)
 
 
-## package.json scripts
-
-> Run `npm install` to install dependencies before executing these scripts
-
+## Main `npm` scripts
 
 `npm start` builds and serves the prod app
 
