@@ -11,7 +11,9 @@ router.route('/')
   .get(getUsers) 
   .post(addUser);
 
+// client needs to send jwt in the header (Authentication: Bearer <token>) with this GET request, 
+// otherwise passport jwt strategy sends a 401 Unauthorized back
 router.route('/:id')
-  .get(jwtAuth, getUser) // this get request needs to send jwt in the header, otherwise resource is not sent back to client
+  .get(jwtAuth, getUser) 
 
 export default router;

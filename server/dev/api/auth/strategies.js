@@ -21,8 +21,16 @@ const jwtOptions = {
   algorithms: [config.jwtAlgorithm]
 };
 
+/* Passport sends a 401 unauthorized status by default if authentication fails
+ * This strategy is used as a gatekeeper: if clients pass verification they are given
+ * access to the requested resource in the controller for the route they hit
+ * Because we will use this strategy as a route middleware for any protected route
+ * we can't configure database operations (finding resources) in the body of the strategy like we
+ * do with local strategy, which is used only for login
+ */
 const jwtStrategy = new JwtStrategy(jwtOptions, (jwtPayload, done) => {
-  done(null, jwtPayload);
+  // jwtPayload is the decoded jwt
+  // done(null, jwtPayload); 
 });
 
 
