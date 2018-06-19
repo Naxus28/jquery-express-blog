@@ -44,17 +44,21 @@ const localStrategy = new LocalStrategy({
   // processing is done.
   (email, password, done) => {
     User.findOne({ email }, (err, user) => {
+      let invalidLoginMessage = {
+        message: 'Username and password do not match.' 
+      };
+
       if (err) return done(err);
       
       if (!user) {
         // if using passport's flashing message, pass a third argument
         // as such: done({ message: 'Account not found.' }, false, { message: 'Account not found.' })
         // see docs http://www.passportjs.org/docs/configure/
-        return done({ message: 'Username and password do not match.' }, false);
+        return done(invalidLoginMessage, false);
       }
 
       if (!user.verifyPassword(password)) {
-        return done({ message: 'Username and password do not match.' }, false);
+        return done(invalidLoginMessage, false);
       }
 
       return done(null, user);
