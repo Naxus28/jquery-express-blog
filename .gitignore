@@ -1,4 +1,3 @@
 node_modules
 dist
-public/vendors/bower_components
-
+public/js/vendors/bower_components/
