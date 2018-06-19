@@ -1,5 +1,5 @@
-import userRoutes from './user/userRoutes';
-import blogRoutes from './blog/blogRoutes';
+import userRoutes from './resources/user/userRoutes';
+import blogRoutes from './resources/blog/blogRoutes';
 import loginRoutes from './login/loginRoutes';
 
 // passport.use middleware

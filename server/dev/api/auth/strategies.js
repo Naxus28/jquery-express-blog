@@ -5,7 +5,7 @@ import {
   ExtractJwt 
 } from 'passport-jwt';
 
-import User from '../user/userModel';
+import User from '../resources/user/userModel';
 import config from '../../config/config';
 
 
@@ -15,7 +15,7 @@ import config from '../../config/config';
 const jwtOptions = {
   secretOrKey: config.jwtSecret, // required
 
-  // jwt has to be passed in the request header in the following format Bearer <token>
+  // jwt has to be passed in the request header in the following format: Bearer <token>
   // check other options here: https://github.com/themikenicholson/passport-jwt#extracting-the-jwt-from-the-request
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // required
   algorithms: [config.jwtAlgorithm]
@@ -47,8 +47,8 @@ const localStrategy = new LocalStrategy({
       if (err) return done(err);
       
       if (!user) {
-        // id using passport's flashing message, pass a third argument
-        // as such done({ message: 'Account not found.' }, false, { message: 'Account not found.' })
+        // if using passport's flashing message, pass a third argument
+        // as such: done({ message: 'Account not found.' }, false, { message: 'Account not found.' })
         // see docs http://www.passportjs.org/docs/configure/
         return done({ message: 'Account not found.' }, false);
       }
