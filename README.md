@@ -1,4 +1,4 @@
-# jQuery-Express Blog app 
+# Blog
 
 This front end app is a SPA built with jquery and sammyjs. The API is built with node-express. The app uses passport for authentication.
 
