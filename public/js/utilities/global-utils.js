@@ -8,12 +8,14 @@ const getBlogPostTextFields = e => {
       id = $postParent.attr('id'),
       title = $postParent.find('.blog-post__title').text().trim(),
       author = $postParent.find('.blog-post__author').text().trim(),
+      authorId = $postParent.find('.blog-post__author-id').val().trim(),
       content = $postParent.find('.blog-post__content').text().trim();
 
   return {
     id,
     title,
     author,
+    authorId,
     content
   };
 }
@@ -38,9 +40,9 @@ const buildPostsHTML = post => (
     <div class="blog-post__header">
       <h1 class="blog-post__title">${post.title}</h1>
     </div>
-
+    <input class="blog-post__author-id" type="hidden" value="${post.author._id}">
     <h3 class="blog-post__author">
-      ${post.author}
+      ${post.author.email}
     </h3>
     <p class="blog-post__content">
       ${post.content}

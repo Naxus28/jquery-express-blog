@@ -95,6 +95,12 @@ button.cancel-update {
   margin-bottom: 10px;
   font
 }
+
+.update-form__author {
+  color: #aaa;
+  cursor: no-drop;
+}
+
 form {
   margin-top: 20px;
   margin-bottom: 20px;

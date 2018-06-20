@@ -1,8 +1,9 @@
 const getUpdatePostForm = jqueryEvent => {
   let { 
     id, 
-    author,
     title, 
+    author,
+    authorId,
     content
   } = getBlogPostTextFields(jqueryEvent, '.post-container');
 
@@ -11,7 +12,8 @@ const getUpdatePostForm = jqueryEvent => {
       <div class="update-error error"></div>
       <form action="#/" method="POST" class="blog-update" onsubmit="return false;" id=${id}>
         <div class="input-wrapper">
-          <input name="author" placeholder="Author" value="${author}">
+          <input type="hidden" name="author" value="${authorId}">
+          <input class="update-form__author" name="authorEmail" placeholder="Author" value="${author}" readonly>
           <input name="title" placeholder="Title" value="${title}">
         </div>
 

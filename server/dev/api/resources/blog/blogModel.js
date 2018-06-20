@@ -13,14 +13,14 @@ const BlogPost = new Schema({
     required: 'Title is mandatory',
     unique: 'This title has already been used'
   },
+  content: {
+    type: String,
+    required: 'Content is mandatory.'
+  },
   slug: {
     type: String,
     required: 'Slug is mandatory.',
     unique: 'A slug for this title has already been used.'
-  },
-  content: {
-    type: String,
-    required: 'Content is mandatory.'
   },
   publishDate: {
     type: Date,

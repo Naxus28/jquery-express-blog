@@ -6,7 +6,7 @@
   <p class="blog-posts__post-deail-link"><a href="/#/blog/<%= post.slug %>">Read Post</a></p>
   <div class="blog-posts__post-footer">
     <div class="author-container">
-      <span class="author bold"><%= post.author %></span>
+      <span class="author bold"><%= post.author.email %></span>
     </div>        
 
     <div class="published-dates-container">

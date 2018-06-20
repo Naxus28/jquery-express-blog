@@ -6,9 +6,9 @@
       <div class="blog-post__header">
         <h1 class="blog-post__title"><%= post.title %></h1>
       </div>
-
+      <input class="blog-post__author-id" type="hidden" value="<%= post.author._id %>">
       <h3 class="blog-post__author">
-        <%= post.author %>
+        <%= post.author.email %>
       </h3>
       <p class="blog-post__content">
         <%= post.content %>
