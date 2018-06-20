@@ -8,7 +8,8 @@ import { ApiException } from '../../errorHandlers/exceptionClasses';
  * @return {undefined}            
  */
 const errorHandler = (err, Exception, next) => {
-  next(new Exception(err.message, err.status));
+  let message = err.message || err;
+  next(new Exception(message, err.status));
 };
 
 /**

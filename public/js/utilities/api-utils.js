@@ -3,10 +3,11 @@
  * @param  {String or jQuery Object} err passed from the user or from the jQuery error callback
  * @return {undefined} 
  */
-const handleApiError = (err, context = false) => {
+const handleApiError = (err, context) => {
+  console.log('err: ', err);
   let error = typeof err === 'string' 
     ? err
-    : `${err.status} ${err.responseJSON.message}`;
+    : `${err.status} ${err.statusText}`;
 
   const errorSafeUrl = error.toLowerCase().replace(/ /g, '-' ); // replace empty space for -
 
@@ -44,7 +45,7 @@ const deletePost = context => {
         },
         data: JSON.stringify(textFields), // need to stringify to send as json
         success: () => context.redirect('/#/'), // remove the blog node
-        error: handleApiError
+        error: err => handleApiError(err, context)
       });
     }
   });
@@ -86,13 +87,16 @@ const submitUpdate = (context, hiddenPostSelector) => {
       },
       data: JSON.stringify(Object.assign(data, { id: id })), // need to stringify to send as json
       success: post => {
+        // reset the url in case user changes the title (slug is created from the title on the backend) 
+        context.app.setLocation(`#/blog/${post.slug}`); 
+
         $updateForm.remove();
         $form[0].reset();
         $(hiddenPostSelector)
           .html(buildPostsHTML(post))
           .show(); 
       },
-      error: err => handleApiError(err)
+      error: err => handleApiError(err, context)
     });
   });
 };
