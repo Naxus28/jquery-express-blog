@@ -1,6 +1,7 @@
 <div class="error-container">
   <a href="/#/">Home</a>
-  <h1 class="error-container__title">Error</h1>
+  <h1 class="error-container__title">Oops... it seems like something went wrong</h1>
+  <span class="error-container__emoji">◔̯◔</span>
   <div class="error">
     <%= error %>
   </div>

@@ -4,7 +4,6 @@
  * @return {undefined} 
  */
 const handleApiError = (err, context) => {
-  console.log('err: ', err);
   let error = typeof err === 'string' 
     ? err
     : `${err.status} ${err.statusText}`;

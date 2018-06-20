@@ -1,9 +1,11 @@
 const errorCtrl = context => {
+  // get error from the url slug
   let error = window.location.hash.replace(/(#\/error\/)|(-)/g, ' ');
 
-  context.swap('');
+  context.app.swap('');
   
+  // http://sammyjs.org/docs/api/0.7.4/all#Sammy.RenderContext-replace
   context
     .render('../../templates/error.template', { error })
-    .appendTo(context.$element());
+    .replace(context.$element());
 };
