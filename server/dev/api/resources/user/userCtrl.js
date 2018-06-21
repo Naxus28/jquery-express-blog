@@ -69,9 +69,10 @@ const deleteUser = (req, res, next) => {
         status: 404
       }, DatabaseException, next);
 
-    // need this to trigger User.pre('remove', ()=>{}) hook on the model
+    // need the line below to trigger User.pre('remove', ()=>{}) hook on the model
     // which removes blog posts associated with this user
     user.remove();
+    
     res.json({message: `User was successfuly deleted.`});
   });
 };
