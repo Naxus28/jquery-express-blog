@@ -100,7 +100,8 @@ User.pre('save', function(next) {
   // for more on 'isModified()' check http://mongoosejs.com/docs/api.html#document_Document-isModified
   if (!this.isModified('password')) return next();
 
-  // this.hashPassword refers to the method added to the schema
+  // this.hashPassword refers to the method created for 
+  // each user instance (not static)
   this.password = this.hashPassword(this.password);
   next();
 })
