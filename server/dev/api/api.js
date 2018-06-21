@@ -7,7 +7,8 @@ import startAuthStrategies from './auth/strategies';
 
 export default app => {
   // strategies have to be placed before routes
-  // because routes use strategies via passport.authenticate('strategyName')
+  // because routes use strategies as middleware
+  // via passport.authenticate('strategyName') exported from ./auth
   startAuthStrategies();
 
   app.use('/api/user', userRoutes);
