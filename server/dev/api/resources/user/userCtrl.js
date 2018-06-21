@@ -11,9 +11,6 @@ import _ from 'lodash';
  * @return {undefined}       
  */
 const addUser = (req, res, next) => {
-  // hash the password and put it back on req.body
-  // req.body.password = User.hashPassword(req.body.password);
-
   new User(req.body)
     .save((err, user) => {
       if (err) return errorHandler(err, DatabaseException, next);
