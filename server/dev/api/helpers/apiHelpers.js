@@ -1,4 +1,4 @@
-import { ApiException } from '../../errorHandlers/exceptionClasses';
+import { ApiException } from '../../exceptions/exceptionClasses';
 
 /**
  * handles errors generated in api controllers
@@ -10,8 +10,6 @@ import { ApiException } from '../../errorHandlers/exceptionClasses';
 const errorHandler = (err, Exception, next) => {
   let message = 'Internal Server Error';
   let status = 500;
-
-  console.log('err: ', err);
 
   if (err) {
     message = typeof err === 'string' ? err : err.message;

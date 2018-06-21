@@ -6,10 +6,10 @@ class Exception {
   }
 };
 
-class StorageException extends Exception {
+class DatabaseException extends Exception {
   constructor(message, status) {
     super(message, status);
-    this.name = "StorageException";
+    this.name = "DatabaseException";
   }
 };
 
@@ -23,5 +23,5 @@ class ApiException extends Exception {
 
 export {
   ApiException,
-  StorageException
+  DatabaseException
 };
