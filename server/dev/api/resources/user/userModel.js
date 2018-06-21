@@ -37,6 +37,11 @@ const User = new Schema({
     required: 'Password is mandatory.',
     trim: true
   },
+  role: {
+    type: String,
+    enum: ['admin', 'editor', 'author', 'contributor', 'follower'],
+    default: 'follower'
+  },
   age: {
     type: Number,
     trim: true
@@ -124,11 +129,13 @@ User.post('save', (err, user, next) => {
     // errors with the errorHandler and exception classes
     // next('This email is already registered.');
   } else if (err.errors) {
-    // errors is an object with validation errors
-    // this model generate errors for 'required' for email and password
-    error = err.errors.email 
-      ? err.errors.email 
-      : err.errors.password;
+    
+   // errors is an object with validation errors
+   // this model generate errors for 'required' for email and password, and 'enum' for role
+    for(let key in err.errors) {
+      error = err.errors[key].message;
+      break;
+    }
   } 
 
   next(error);
