@@ -6,7 +6,6 @@ import bcrypt from 'bcrypt';
 // over time, the iteration count can be increased to make it slower, 
 // so it remains resistant to brute-force search attacks even 
 // with increasing computation power.
-const saltRounds = 10;
 const emailRegexPattern = /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const Schema = mongoose.Schema;
 
@@ -60,6 +59,15 @@ User.methods = {
     return bcrypt.compareSync(password.toString(), this.password);  
   },
 
+  hashPassword: function(password){
+    if (!password) {
+      return '';
+    } else {
+      const saltRounds = 10;
+      return bcrypt.hashSync(password, saltRounds); // hash and salt password
+    }
+  },
+
   // return user without password after saving document
   serializeResponse: function(user) {
     // need to convert mongodb document into an object to be able to delete key
@@ -74,8 +82,28 @@ User.methods = {
 // use hashSync to avoid handling promises
 // NOTE: perhaps it would be better to use async method 
 // and handle the hashed password in the 'then' method to avoid blocking I/O
-User.statics.hashPassword = password => bcrypt.hashSync(password, saltRounds); 
+// User.statics.hashPassword = password => {
+//   if (!password) {
+//     return '';
+//   } else {
+//     const saltRounds = 10;
+//     return bcrypt.hashSync(password, saltRounds); // hash and salt password
+//   }
+// }; 
 
+ 
+
+// this user schema middleware will run before a document is created
+// check http://mongoosejs.com/docs/api.html#schema_Schema-pre
+User.pre('save', function(next) {
+  // 'isModified()' returns true if this document was modified, else false.
+  // for more on 'isModified()' check http://mongoosejs.com/docs/api.html#document_Document-isModified
+  if (!this.isModified('password')) return next();
+
+  // this.hashPassword refers to the method added to the schema
+  this.password = this.hashPassword(this.password);
+  next();
+})
 
 // http://mongoosejs.com/docs/middleware.html
 // "The save() function triggers validate() hooks, 
