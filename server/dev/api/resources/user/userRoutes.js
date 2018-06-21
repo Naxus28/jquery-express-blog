@@ -3,6 +3,7 @@ import { jwtAuth } from '../../auth/authenticate';
 
 import {
   addUser,
+  deleteUser,
   getUsers,
   getUser
 } from './userCtrl';
@@ -15,5 +16,6 @@ router.route('/')
 // otherwise passport jwt strategy sends a 401 Unauthorized back
 router.route('/:id')
   .get(jwtAuth, getUser) 
+  .delete(jwtAuth, deleteUser) 
 
 export default router;

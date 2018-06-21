@@ -59,8 +59,27 @@ const getUser = (req, res, next) => {
     });
 };
 
+
+const deleteUser = (req, res, next) => {
+  User.findOneAndRemove({_id: req.params.id}, (err, user) => {
+    if (err) return errorHandler(err, ApiException, next);
+
+    if (!Object.keys(user).length) return errorHandler({
+        message: 'Resource not found', 
+        status: 404
+      }, DatabaseException, next);
+
+    // need this to trigger 
+    // pre remove hook on the model
+    // which removes blog posts associated with this user
+    user.remove();
+    res.json({message: `User was successfuly deleted.`});
+  });
+};
+
 export {
   addUser,
+  deleteUser,
   getUsers,
   getUser
 };
