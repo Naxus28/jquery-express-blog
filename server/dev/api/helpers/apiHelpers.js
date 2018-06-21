@@ -8,8 +8,17 @@ import { ApiException } from '../../errorHandlers/exceptionClasses';
  * @return {undefined}            
  */
 const errorHandler = (err, Exception, next) => {
-  let message = err.message || err;
-  next(new Exception(message, err.status));
+  let message = 'Internal Server Error';
+  let status = 500;
+
+  console.log('err: ', err);
+
+  if (err) {
+    message = typeof err === 'string' ? err : err.message;
+    status = typeof err === 'string' ? status : err.status;
+  }
+
+  next(new Exception(message, status));
 };
 
 /**

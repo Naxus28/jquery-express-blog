@@ -16,6 +16,5 @@
   ],
   "dependencies": {
     "jquery-serialize-object": "2.5.0"
-  },
-  ""
+  }
 }

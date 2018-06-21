@@ -26,8 +26,9 @@ const User = new Schema({
   email: {
     type: String,
     required: 'Email is mandatory.',
-    unique: 'This email is already registered.',
-    trim: true
+    unique: true,
+    trim: true,
+    validate: [email => /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email), 'Please fill a valid email address']
   },
   password: {
     type: String,
@@ -71,6 +72,15 @@ User.methods = {
 // NOTE: perhaps it would be better to use async method 
 // and handle the hashed password in the 'then' method to avoid blocking I/O
 User.statics.hashPassword = password => bcrypt.hashSync(password, saltRounds); 
+
+
+User.post('save', (err, doc, next) => {
+  if (err.name === 'MongoError' && err.code === 11000) {
+    next(new Error('This email is already registered.'));
+  } else {
+    next(err);
+  }
+});
 
 export default mongoose.model('User', User);
 

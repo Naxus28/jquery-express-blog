@@ -26,10 +26,11 @@ const getBlogPosts = (req, res, next) => {
       if (err) return errorHandler(err.codeName, ApiException, next);
 
       if (!blogPosts.length) {
-        return errorHandler({
-          message: 'Resources not found', 
-          status: 404
-        }, ApiException, next);
+        return res
+          .status(204)
+          .json({
+            message: 'No Content', 
+          });
       } 
 
       // try to find a native way to

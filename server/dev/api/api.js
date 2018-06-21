@@ -10,7 +10,7 @@ export default app => {
   // because routes use strategies via passport.authenticate('strategyName')
   startAuthStrategies();
 
-  app.use('/user', userRoutes);
-  app.use('/blog', blogRoutes);
-  app.use('/login', loginRoutes);
+  app.use('/api/user', userRoutes);
+  app.use('/api/blog', blogRoutes);
+  app.use('/api/login', loginRoutes);
 };
