@@ -74,9 +74,12 @@ User.methods = {
 User.statics.hashPassword = password => bcrypt.hashSync(password, saltRounds); 
 
 
+// customize email 'unique' constraint error message (note: unique is not a validator--cannot pass custom message like 'required')
 User.post('save', (err, doc, next) => {
   if (err.name === 'MongoError' && err.code === 11000) {
     next(new Error('This email is already registered.'));
+  } else if (err.errors) {
+    next(new Error(err.errors.email));
   } else {
     next(err);
   }
