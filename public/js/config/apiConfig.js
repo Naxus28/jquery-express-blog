@@ -1,1 +1,1 @@
-const BLOG_ENDPOINT = `${window.location.origin}/blog`;
+const BLOG_ENDPOINT = `${window.location.origin}/api/blog`;
