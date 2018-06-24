@@ -5,7 +5,11 @@
 const getPost = context => {
   const slug = window.location.hash.replace('#/blog', '');
 
-  initApiListeners(context, '.blog-post');
+  // starts listeners for update and delete 
+  // on this blog post
+  updateBlogListener(context, '.blog-post');
+  deleteBlogListener(context);
+
   initUpdateBlogListeners('.blog-post');
 
   $.ajax({
