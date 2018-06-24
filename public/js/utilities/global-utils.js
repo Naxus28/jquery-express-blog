@@ -30,37 +30,6 @@ const trimContent = (content, maxLen) => {
   return content.length > maxLen ? `${content.substring(0, maxLen)}...` : content;
 };
 
-/**
- * BUILD POST HTML
- * @param  {Array} blogPosts
- * @return {DOM Node(s)}
- */
-const buildPostsHTML = post => ( 
-  `<div class="post-container" id="${post._id}">
-    <div class="blog-post__header">
-      <h1 class="blog-post__title">${post.title}</h1>
-    </div>
-    <input class="blog-post__author-id" type="hidden" value="${post.author._id}">
-    <h3 class="blog-post__author">
-      ${post.author.email}
-    </h3>
-    <p class="blog-post__content">
-      ${post.content}
-    </p>
-    <div class="blog-post__dates-container">
-      <span class="date">Published: ${formatDateForPost(post.publishDate)}</span>
-      ${post.updatedDate &&
-        `<span class="date">Last update: ${formatDateForPost(post.updatedDate)}</span>`
-      }
-    </div>
-    <div class="blog-post__footer">
-      <div class="blog-post__actions-buttons-container">
-        <button class="update">Update</button>
-        <button class="delete delete-post">Delete</button>
-      </div>
-    </div>
-  </div>`   
-);
 
 
 
