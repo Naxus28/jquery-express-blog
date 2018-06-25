@@ -41,7 +41,7 @@ const postBlog = context => {
       // and append to '.blog-posts' in submit-form.template
       // previously loaded into the context 
       context
-        .render('../../templates/posts.template', { post: updatedPost })
+        .render('../../templates/partials/posts.template', { post: updatedPost })
         .prependTo('.blog-posts');
 
       $error.hide();

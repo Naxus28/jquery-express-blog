@@ -11,7 +11,7 @@ const getPosts = context => {
       context.app.swap('');
 
       // first load the submit-form template
-      context.partial('../../templates/submit-form.template');
+      context.partial('../../templates/partials/submit-form.template');
 
       // for each post fetched from the api
       $.each(posts, (i, post) => {
@@ -26,7 +26,7 @@ const getPosts = context => {
         // and append to '.blog-posts' in submit-form.template
         // previously loaded into the context 
         context
-          .render('../../templates/posts.template', { post: updatedPost })
+          .render('../../templates/partials/posts.template', { post: updatedPost })
           .appendTo('.blog-posts');
       });
     },

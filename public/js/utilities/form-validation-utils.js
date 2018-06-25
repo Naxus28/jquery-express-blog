@@ -48,7 +48,7 @@ const formatIncompleteFieldsErrorMsg = fields => {
 
 const displayFormError = (error, context, parentClass) => {
   context
-    .render('../../templates/form-error.template', { error })
+    .render('../../templates/partials/form-error.template', { error })
     .replace(parentClass); // replace works like jquery's html method
 
     $(parentClass).show();

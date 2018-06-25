@@ -28,7 +28,7 @@ const getPost = context => {
       // interpolate the object and template
       // and append to #main
       context
-        .render('../../templates/post.template', { post })
+        .render('../../templates/partials/post.template', { post })
         .appendTo(context.$element());
     },
     error: err => handleApiError(err, context)

@@ -6,6 +6,6 @@ const errorCtrl = context => {
   
   // http://sammyjs.org/docs/api/0.7.4/all#Sammy.RenderContext-replace
   context
-    .render('../../templates/error.template', { error })
+    .render('../../templates/partials/error.template', { error })
     .replace(context.$element());
 };
