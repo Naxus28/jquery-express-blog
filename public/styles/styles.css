@@ -211,6 +211,11 @@ span.author
   font-weight: 600;
 }
 
+footer {
+  padding: 20px;
+  text-align: center;
+}
+
 @media screen and (max-width: 1050px) {
   .the-pit {
     width: 90%;
