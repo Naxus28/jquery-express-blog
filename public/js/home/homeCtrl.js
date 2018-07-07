@@ -15,7 +15,7 @@ const getPosts = context => {
       context.partial('../../templates/partials/the-pit.template');
 
       // render the footer and header
-      context.render('../../templates/ui/header.template').prependTo('.the-pit');
+      context.render('../../templates/ui/header.template').prependTo('#main');
      
 
       // for each post fetched from the api
@@ -36,7 +36,7 @@ const getPosts = context => {
       });
 
       // render the footer
-      // context.render('../../templates/ui/footer.template').appendTo('.the-pit');
+      context.render('../../templates/ui/footer.template').appendTo('#main');
       
     },
     error: err => handleApiError(err, context)

@@ -6,7 +6,11 @@
 const getPost = context => {
   // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
   context.app.swap('');
-  
+
+  // render the header and footer -- append to 'context.$element()' (#main)
+  context.render('../../templates/ui/header.template').prependTo(context.$element());
+  context.render('../../templates/ui/footer.template').appendTo(context.$element());
+
   const slug = window.location.hash.replace('#/blog', '');
 
   // starts listeners for update and delete 
@@ -14,6 +18,7 @@ const getPost = context => {
   updateBlogListener(context, '.blog-post');
   deleteBlogListener(context);
 
+  // listens for clicks on 'update' and 'cancel' buttons
   initUpdateBlogUIListeners('.blog-post');
 
 
@@ -21,10 +26,10 @@ const getPost = context => {
   // then call api with blog post
   context
     .load('../../templates/partials/the-pit.template')
-    .then(e => {
-      $(e).appendTo(context.$element());
-      blogAjaxCall();
-    });
+    .then(e => (
+      $(e).appendTo(context.$element()),
+      blogAjaxCall()
+    ));
 
   
   const blogAjaxCall = () => {
@@ -38,19 +43,13 @@ const getPost = context => {
         // mutate post with formatted data
         Object.assign(post, { publishDate, updatedDate })
         
-        // render the header
-        context.render('../../templates/ui/header.template').prependTo('.the-pit');
         
-        // interpolate the object and template and append to #main
+        // interpolate the object and template and append to .the-pit
         context
           .render('../../templates/partials/post.template', { post })
           .appendTo('.the-pit');
-
-        // render the footer
-        context.render('../../templates/ui/footer.template').appendTo('.the-pit');
       },
       error: err => handleApiError(err, context)
     });
   }
-  
 };
