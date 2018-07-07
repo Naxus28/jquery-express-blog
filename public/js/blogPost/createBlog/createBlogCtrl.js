@@ -1,5 +1,6 @@
 /**
 * AJAX POST 
+* 'context' is passed from sammy route to which this function is tied
 * @return {undefined}
 */
 const postBlog = context => {

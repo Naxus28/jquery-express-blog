@@ -3,19 +3,20 @@
 * @return {undefined}
 */
 const getPosts = context => {
+  // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
+  context.app.swap('');
+
   $.ajax({
     url: BLOG_ENDPOINT,
     dataType: 'json',
     success: posts => {
-      // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
-      context.app.swap('');
+
+       // load the-pit template
+      context.partial('../../templates/partials/the-pit.template');
 
       // render the footer and header
-      context.render('../../templates/ui/header.template').prependTo('body');
-      context.render('../../templates/ui/footer.template').appendTo('body');
-
-      // load the-pit template
-      context.partial('../../templates/partials/the-pit.template');
+      context.render('../../templates/ui/header.template').prependTo('.the-pit');
+     
 
       // for each post fetched from the api
       $.each(posts, (i, post) => {
@@ -33,6 +34,9 @@ const getPosts = context => {
           .render('../../templates/partials/posts.template', { post: updatedPost })
           .appendTo('.the-pit');
       });
+
+      // render the footer
+      // context.render('../../templates/ui/footer.template').appendTo('.the-pit');
       
     },
     error: err => handleApiError(err, context)
