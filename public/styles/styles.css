@@ -4,15 +4,23 @@
   -moz-osx-font-smoothing: grayscale;
 }
 html,
-body {
+body,
+#main {
+  height: 100%;
   background: #cedede;
 }
-body {
+#main {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
 }
 .the-pit {
+  flex: 1 0 auto; /* This is a shorthand property that sets flex-grow, flex-shrink, and flex-basis: https://developer.mozilla.org/en-US/docs/Web/CSS/flex*/
   width: 70%;
   margin: auto;
+}
+footer {
+  flex-shrink: 0;
 }
 textarea {
   resize: none;
@@ -175,6 +183,11 @@ span.author
   display: block;
   margin-bottom: 5px;
   text-align: right;
+}
+
+/* Blog post */
+.blog-post__title {
+  font-size: 22px;
 }
 
 
