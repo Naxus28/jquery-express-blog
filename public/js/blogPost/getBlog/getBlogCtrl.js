@@ -9,6 +9,7 @@ const getPost = context => {
 
   // render the header and footer -- append to 'context.$element()' (#main)
   context.render('../../templates/ui/header.template').prependTo(context.$element());
+  context.render('../../templates/ui/top-bar.template').prependTo(context.$element());
   context.render('../../templates/ui/footer.template').appendTo(context.$element());
 
   const slug = window.location.hash.replace('#/blog', '');
