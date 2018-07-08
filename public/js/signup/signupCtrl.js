@@ -13,7 +13,7 @@ const renderSignup = context => {
 
 
   context
-  	.render('../../templates/pages/signup.template')
+  	.render('../../templates/partials/signup.template')
   	.appendTo('.the-pit');
 
 };

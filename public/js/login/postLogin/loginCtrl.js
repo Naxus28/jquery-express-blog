@@ -33,6 +33,8 @@ const doLogin = context => {
     success: res => {
 
     	console.log('res: ', res);
+
+    	context.redirect('#/dashboard');
 			      
       // interpolate the variables on the template
       // and append to '.blog-posts' in submit-form.template

@@ -13,8 +13,6 @@ const renderLogin = context => {
 
 
     context
-  	.render('../../../templates/pages/login.template')
+  	.render('../../../templates/partials/login.template')
   	.appendTo('.the-pit');
-
-
 };
