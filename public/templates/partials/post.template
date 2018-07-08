@@ -1,6 +1,4 @@
 <div class="blog-post">
-  <a href="/#/">Home</a>
-
   <div class="blog-post__container" id="<%= post._id %>">
     <div class="blog-post__header">
       <h1 class="blog-post__title"><%= post.title %></h1>

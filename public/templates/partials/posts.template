@@ -10,10 +10,10 @@
     </div>        
 
     <div class="published-dates-container">
-      <span class="date bold">Published: <%= post.publishDate %></span>
+      <span class="date">Published: <%= post.publishDate %></span>
 
       <% if (post.updatedDate) { %>
-        <span class="date bold">Last update: <%= post.updatedDate %></span>
+        <span class="date">Last update: <%= post.updatedDate %></span>
       <% } %>
     </div>
   </div>
