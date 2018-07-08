@@ -21,7 +21,7 @@ body,
   flex: 1 0 auto; /* This is a shorthand property that sets flex-grow, flex-shrink, and flex-basis: https://developer.mozilla.org/en-US/docs/Web/CSS/flex*/
   width: 80%;
   margin: auto;
-  padding: 20px;
+  padding: 40px 20px;
 }
 footer {
   flex-shrink: 0;
