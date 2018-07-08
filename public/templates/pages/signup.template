@@ -1,1 +1,16 @@
-signup
+<section class="login">
+  <h2>Signup</h2>
+
+  <div class="post-error">
+    <!-- error generated via jquery -->
+  </div>
+  
+  <form action="#/sigup" class="sigup__form" method="POST" onsubmit="return false;">
+    <div class="sigup__input-wrapper input-wrapper">
+      <input name="email" placeholder="email">
+      <input name="password" placeholder="password">
+    </div>
+
+    <button class="signup__button btn-primary">Signup</button>
+  </form>
+</section>

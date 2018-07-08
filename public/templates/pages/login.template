@@ -1,1 +1,16 @@
-login
+<section class="login">
+  <h2>Login</h2>
+
+  <div class="post-error">
+    <!-- error generated via jquery -->
+  </div>
+  
+  <form action="#/login" class="login__form" method="POST" onsubmit="return false;">
+    <div class="login__input-wrapper input-wrapper">
+      <input name="email" placeholder="email">
+      <input name="password" placeholder="password">
+    </div>
+
+    <button class="login__button btn-primary">Login</button>
+  </form>
+</section>

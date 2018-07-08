@@ -106,7 +106,8 @@ button {
   border: none;
   font-size: 14px;
 }
-button.create-post {
+
+.btn-primary {
   width: 30%;
   height: 50px;
   padding: 5px;
@@ -172,6 +173,7 @@ h2,
 h3 {
   margin-top: 10px;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 h1 {
   font-size: 32px;
@@ -183,7 +185,6 @@ h2 {
 }
 h3 {
   font-size: 20px;
-  text-transform: uppercase;
 }
 p {
   font-size: 16px;
