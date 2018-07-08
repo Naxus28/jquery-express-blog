@@ -7,7 +7,7 @@ const renderLogin = context => {
   context.partial('../../templates/partials/the-pit.template')
 
   // render top bar, header, and footer (prepend header first then topbar--topbar will be on top)
-  context.render('../../templates/ui/header.template').prependTo(context.$element());
+  // context.render('../../templates/ui/header.template').prependTo(context.$element());
   context.render('../../templates/ui/top-bar.template').prependTo(context.$element());
   context.render('../../templates/ui/footer.template').appendTo(context.$element());
 

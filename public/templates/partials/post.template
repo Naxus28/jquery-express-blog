@@ -1,12 +1,12 @@
 <div class="blog-post">
   <div class="blog-post__container" id="<%= post._id %>">
     <div class="blog-post__header">
-      <h1 class="blog-post__title"><%= post.title %></h1>
+      <h2 class="blog-post__title"><%= post.title %></h2>
     </div>
     <input class="blog-post__author-id" type="hidden" value="<%= post.author._id %>">
-    <h3 class="blog-post__author">
+    <span class="blog-post__author">
       <%= post.author.email %>
-    </h3>
+    </span>
     <p class="blog-post__content">
       <%= post.content %>
     </p>
