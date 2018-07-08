@@ -1,0 +1,8 @@
+<div class="top-bar">
+	<div></div> <!-- flex alignment -->
+	<div class="top-bar__links">
+  	<span><a href="#/signup">Signup</a></span>
+  	<span>|</span>
+  	<span><a href="#/login">Login</a></span>
+	</div>
+</div>
