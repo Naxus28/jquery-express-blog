@@ -7,7 +7,7 @@ const postBlog = context => {
   let $form = $('.blog-form'),
       $error = $('.post-error'),
       data = $form.serializeObject();
-      incompleteFields = fieldsIncomplete(data);
+      incompleteFields = fieldsIncomplete(data, 'blogPost');
 
    if (incompleteFields.length) {
     incompleteFields = incompleteFields.length === 1
