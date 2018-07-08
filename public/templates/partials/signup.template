@@ -5,8 +5,8 @@
     <!-- error generated via jquery -->
   </div>
   
-  <form action="#/sigup" class="sigup__form" method="POST" onsubmit="return false;">
-    <div class="sigup__input-wrapper input-wrapper">
+  <form action="#/signup" class="signup__form" method="POST" onsubmit="return false;">
+    <div class="signup__input-wrapper input-wrapper">
       <input name="email" placeholder="email">
       <input name="password" placeholder="password">
     </div>

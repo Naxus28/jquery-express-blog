@@ -1,1 +1,0 @@
-sammyApp.get('#/signup', renderSignup);

@@ -4,9 +4,12 @@
  * @return {Array} the incoplete form fields
  */
 const fieldsIncomplete = (data, formType) => {
+
+  // TODO: improve this to not repeat login/signuo
   const requiredFields = {
     blogPost: ['author', 'title', 'content'],
-    login: ['email', 'password']
+    login: ['email', 'password'],
+    signup: ['email', 'password']
   }
 
   const incomplete = [];
