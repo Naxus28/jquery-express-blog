@@ -1,0 +1,1 @@
+sammyApp.post('#/signup', doSignup);
