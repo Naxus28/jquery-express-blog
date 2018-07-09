@@ -1,0 +1,1 @@
+sammyApp.get('#/dashboard', renderDash);

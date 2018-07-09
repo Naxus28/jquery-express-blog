@@ -3,11 +3,11 @@
 * 'context' is passed from sammy route to which this function is tied
 * @return {undefined}
 */
-const postBlog = context => {
-  let $form = $('.blog-form'),
-      $error = $('.post-error'),
+const doLogin = context => {
+  let $form = $('.login__form'),
+      $error = $('.login__error'),
       data = $form.serializeObject();
-      incompleteFields = fieldsIncomplete(data, 'blogPost');
+      incompleteFields = fieldsIncomplete(data, 'login');
 
    if (incompleteFields.length) {
     incompleteFields = incompleteFields.length === 1
@@ -23,30 +23,26 @@ const postBlog = context => {
 
    // POST
   $.ajax({
-    url: BLOG_ENDPOINT,
+    url: LOGIN_ENDPOINT,
     method: 'POST',
     dataType: 'json',
     headers: {
       'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
     },
     data: JSON.stringify(data), // need to stringify to send as json
-    success: post => {
-      // format post content
-      let content = trimContent(post.content, 350),
-          publishDate = formatDateForPost(post.publishDate),
-          updatedDate = post.updatedDate && formatDateForPost(post.updatedDate);
-      
-      let updatedPost = Object.assign({}, post, {publishDate, updatedDate, content})
-      
+    success: res => {
+
+    	console.log('res: ', res);
+
+    	context.redirect('#/dashboard');
+			      
       // interpolate the variables on the template
       // and append to '.blog-posts' in submit-form.template
       // previously loaded into the context 
-      context
-        .render('../../templates/partials/posts.template', { post: updatedPost })
-        .prependTo('.blog-posts');
+      // context
+      //   .render('../../templates/partials/posts.template', { post: updatedPost })
+      //   .prependTo('.blog-posts');
 
-      $error.hide();
-      $form[0].reset();
     },
     error: err => handleApiError(err, context)
   });

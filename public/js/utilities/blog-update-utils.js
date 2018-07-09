@@ -32,7 +32,7 @@ const cancelUpdateSubmission = () => {
   });
 };
 
-const initUpdateBlogListeners = blogPostSelector => {
+const initUpdateBlogUIListeners = blogPostSelector => {
   updateBlogPost(blogPostSelector);
   cancelUpdateSubmission();
 };

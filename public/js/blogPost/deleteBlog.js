@@ -1,5 +1,6 @@
 /**
  * AJAX DELETE 
+ * 'context' is passed from sammy route 
  * @return {undefined}
  */
 const deleteBlogListener = context => {
