@@ -10,13 +10,13 @@ const getPosts = context => {
       // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
       context.app.swap('');
 
-      // render the footer and header
-      context.render('../../templates/ui/header.template').prependTo('body');
-      context.render('../../templates/ui/footer.template').appendTo('body');
-
       // load the-pit template
       context.partial('../../templates/partials/the-pit.template');
 
+      // render the footer and header
+      context.render('../../templates/ui/header.template').prependTo('.the-pit');
+
+ 
       // for each post fetched from the api
       $.each(posts, (i, post) => {
         // format post content
@@ -33,6 +33,9 @@ const getPosts = context => {
           .render('../../templates/partials/posts.template', { post: updatedPost })
           .appendTo('.the-pit');
       });
+
+      // context.render('../../templates/ui/footer.template').appendTo('.the-pit');
+      
       
     },
     error: err => handleApiError(err, context)
