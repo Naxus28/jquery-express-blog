@@ -1,12 +1,13 @@
 /**
 * AJAX POST 
+* 'context' is passed from sammy route to which this function is tied
 * @return {undefined}
 */
 const postBlog = context => {
   let $form = $('.blog-form'),
       $error = $('.post-error'),
       data = $form.serializeObject();
-      incompleteFields = fieldsIncomplete(data);
+      incompleteFields = fieldsIncomplete(data, 'blogPost');
 
    if (incompleteFields.length) {
     incompleteFields = incompleteFields.length === 1
@@ -41,7 +42,7 @@ const postBlog = context => {
       // and append to '.blog-posts' in submit-form.template
       // previously loaded into the context 
       context
-        .render('../../templates/posts.template', { post: updatedPost })
+        .render('../../templates/partials/posts.template', { post: updatedPost })
         .prependTo('.blog-posts');
 
       $error.hide();

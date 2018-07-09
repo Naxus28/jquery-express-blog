@@ -3,11 +3,6 @@ import bcrypt from 'bcrypt';
 
 import BlogPost from '../blog/blogModel';
 
-// https://kikobeats.com/storing-passwords-101/
-// Bcrypt is an adaptative password hashing function: 
-// over time, the iteration count can be increased to make it slower, 
-// so it remains resistant to brute-force search attacks even 
-// with increasing computation power.
 const emailRegexPattern = /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const Schema = mongoose.Schema;
 
@@ -54,8 +49,16 @@ const User = new Schema({
   }]
 });
 
-// http://mongoosejs.com/docs/2.7.x/docs/methods-statics.html
-// instance method
+/* http://mongoosejs.com/docs/2.7.x/docs/methods-statics.html
+ * Instance method
+ *
+ * BCrypt
+ * https://kikobeats.com/storing-passwords-101/
+ * Bcrypt is an adaptative password hashing function: 
+ * over time, the iteration count can be increased to make it slower, 
+ * so it remains resistant to brute-force search attacks even 
+ * with increasing computation power.
+ */
 
 // use 'function' instead of '=>' to prevent lexical binding 
 // and avoid losing access to 'this' 
@@ -66,17 +69,15 @@ User.methods = {
     return bcrypt.compareSync(password.toString(), this.password);  
   },
 
-  hashPassword: function(password){
-    if (!password) {
-      return '';
-    } else {
-      const saltRounds = 10;
-      return bcrypt.hashSync(password, saltRounds); // hash and salt password
-    }
+  hashPassword: password => {
+    if (!password) return '';
+    
+    const saltRounds = 10;
+    return bcrypt.hashSync(password, saltRounds); // hash and salt password
   },
 
   // return user without password after saving document
-  serializeResponse: function(user) {
+  serializeResponse: user => {
     // need to convert mongodb document into an object to be able to delete key
     const updatedUser = user.toObject(); 
     delete updatedUser.password;

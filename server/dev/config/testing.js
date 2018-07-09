@@ -3,5 +3,5 @@ export default {
   db: {
     url: 'mongodb://localhost/blog-test'
   },
-  url: `http://localhost:${process.env.PORT}` 
+  url: `http://localhost:${process.env.PORT || 3000}` 
 };

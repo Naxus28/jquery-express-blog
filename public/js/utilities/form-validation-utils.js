@@ -3,11 +3,18 @@
  * @param  {Object} data
  * @return {Array} the incoplete form fields
  */
-const fieldsIncomplete = data => {
-  const requiredFields = ['author', 'title', 'content'];
+const fieldsIncomplete = (data, formType) => {
+
+  // TODO: improve this to not repeat login/signuo
+  const requiredFields = {
+    blogPost: ['author', 'title', 'content'],
+    login: ['email', 'password'],
+    signup: ['email', 'password']
+  }
+
   const incomplete = [];
 
-  requiredFields.forEach(field => {
+  requiredFields[formType].forEach(field => {
     if (!data[field]) {
         incomplete.push(field);
       }
@@ -48,7 +55,7 @@ const formatIncompleteFieldsErrorMsg = fields => {
 
 const displayFormError = (error, context, parentClass) => {
   context
-    .render('../../templates/form-error.template', { error })
+    .render('../../templates/partials/form-error.template', { error })
     .replace(parentClass); // replace works like jquery's html method
 
     $(parentClass).show();

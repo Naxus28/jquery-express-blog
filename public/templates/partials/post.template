@@ -1,0 +1,26 @@
+<div class="blog-post">
+  <div class="blog-post__container" id="<%= post._id %>">
+    <div class="blog-post__header">
+      <h2 class="blog-post__title"><%= post.title %></h2>
+    </div>
+    <input class="blog-post__author-id" type="hidden" value="<%= post.author._id %>">
+    <span class="blog-post__author">
+      <%= post.author.email %>
+    </span>
+    <p class="blog-post__content">
+      <%= post.content %>
+    </p>
+    <div class="blog-post__dates-container">
+      <span class="date">Published: <%= post.publishDate %></span>
+      <% if (post.updatedDate) { %>
+        <span class="date">Last update: <%= post.updatedDate %></span>
+      <% } %>
+    </div>
+    <div class="blog-post__footer">
+      <div class="blog-post__actions-buttons-container">
+        <button class="update">Update</button>
+        <button class="delete delete-post">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

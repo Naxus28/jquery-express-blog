@@ -1,1 +1,0 @@
-sammyApp.post('#/', postBlog);
