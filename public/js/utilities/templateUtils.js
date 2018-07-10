@@ -4,7 +4,7 @@
  * @return {DOM Node(s)}
  */
 const buildPostsHTML = post => ( 
-  `<div class="post-container" id="${post._id}">
+  `<div class="blog-post__container" id="${post._id}">
     <div class="blog-post__header">
       <h1 class="blog-post__title">${post.title}</h1>
     </div>

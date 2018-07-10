@@ -11,8 +11,5 @@ const renderLogin = context => {
   context.render('../../../templates/ui/top-bar.template').prependTo(context.$element());
   context.render('../../../templates/ui/footer.template').appendTo(context.$element());
 
-
-    context
-  	.render('../../../templates/partials/login.template')
-  	.appendTo('.the-pit');
+  context.render('../../../templates/partials/login.template').appendTo('.the-pit');
 };

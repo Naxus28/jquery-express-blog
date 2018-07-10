@@ -10,7 +10,7 @@ const updateBlogListener = (context, hiddenPostSelector) => {
         id = $form.attr('id'),
         $updateForm = $('.update-form'),
         data = $form.serializeObject();
-        incompleteFields = fieldsIncomplete(data);
+        incompleteFields = fieldsIncomplete(data, 'blogPost');
 
 
      if (incompleteFields.length) {

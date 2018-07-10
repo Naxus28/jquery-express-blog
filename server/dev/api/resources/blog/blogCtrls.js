@@ -81,7 +81,7 @@ const getBlogPost = (req, res, next) => {
 
 const createBlogPost = (req, res, next) => {
   // create slug for friendly url
-  req.body.slug = req.body.title.toLowerCase().split(' ').join('-')
+  req.body.slug = req.body.title.toLowerCase().split(' ').join('-');
 
   new BlogModel(req.body).save((err, blogPost) => {
     if (err) return errorHandler(err, ApiException, next);

@@ -21,7 +21,6 @@ const getPosts = context => {
     url: BLOG_ENDPOINT,
     dataType: 'json',
     success: posts => {
-
       // for each post fetched from the api
       $.each(posts, (i, post) => {
         // format post content
@@ -38,6 +37,9 @@ const getPosts = context => {
           .render('../../templates/partials/posts.template', { post: updatedPost })
           .appendTo('.the-pit');
       });
+
+      // context.render('../../templates/ui/footer.template').appendTo('.the-pit');
+      
       
     },
     error: err => handleApiError(err, context)
