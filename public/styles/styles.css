@@ -1,6 +1,5 @@
 /*color schemes: https://www.canva.com/learn/website-color-schemes/*/
 /*using #22*/
-
 *, 
 *:before, 
 *:after {
@@ -32,8 +31,11 @@ body {
 }
 footer {
   flex-shrink: 0;
+  background: #0f1626;
+  padding: 20px;
+  text-align: center;
+  color: #f5f5f5;
 }
-
 .top-bar {
   padding: 30px;
   display: flex;
@@ -41,48 +43,34 @@ footer {
   justify-content: space-between;
   background: #0f1626;
 }
-
 .top-bar .top-bar__flex-alignment-div,
 .top-bar .top-bar__links {
   flex: 1;
 }
-
 .top-bar .top-bar__links {
   text-align: right;
 }
-
 .top-bar span {
   margin-left: 10px;
   color: #f5f5f5;
 }
-
-.top-bar a {
+.top-bar a,
+h1 a {
   text-transform: uppercase;
   color: #f5f5f5;
 }
-
-.top-bar a:hover {
+.top-bar a:hover,
+h1 a:hover {
   color: #f5f5f5;
 }
-
-h1 a {
-  color: #0f1626;
-}
-
-h1 a:hover {
-  color: #0f1626;
-}
-
 a {
   color: #ab987a;
   text-decoration: none;
   transition: all .3s ease;
 }
-
 a:hover {
   color: #d03c29;
 }
-
 textarea {
   resize: none;
   width: 100%;
@@ -113,7 +101,6 @@ button {
   border: none;
   font-size: 14px;
 }
-
 .btn-primary {
   width: 30%;
   height: 50px;
@@ -122,7 +109,6 @@ button {
   font-size: 16px;
   text-transform: uppercase;
 }
-
 button.update,
 button.delete {
   width: 10%;
@@ -148,7 +134,6 @@ button.cancel-update {
 .buttons-container {
   text-align: right;
 }
-
 .blog-post__content {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -166,12 +151,10 @@ button.cancel-update {
   margin-bottom: 10px;
   font
 }
-
 .update-form__author {
   color: #aaa;
   cursor: no-drop;
 }
-
 form {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -204,7 +187,6 @@ span.author
   font-style: italic;
   font-size: 14px;
 }
-
 .blog-posts {
   margin-top: 50px;
 }
@@ -255,20 +237,16 @@ span.author
   text-transform: uppercase;
   margin-bottom: 20px;
 }
-
 .blog-post__author {
   display: block;
   font-size: 16px;
   text-transform: uppercase;
 }
-
-
 .error {
   text-align: center;
   font-size: 26px;
   margin-top: 50px;
 }
-
 .post-error,
 .update-error {
   display: none;
@@ -280,31 +258,21 @@ span.author
   background: #f16a5d;
   color: white;
 }
-
 .error-container__title {
   padding-top: 20px;
 }
-
 .error-container__title,
 .error-container__emoji {
   text-align: center;
 }
-
 .error-container__emoji {
   display: block;
   font-size: 60px;
   font-style: ;
 }
-
 .bold {
   font-weight: 600;
 }
-
-footer {
-  padding: 20px;
-  text-align: center;
-}
-
 @media screen and (max-width: 1050px) {
   .the-pit {
     width: 90%;
@@ -315,7 +283,6 @@ footer {
     width: 20%;
   }
 }
-
 @media screen and (max-width: 600px) {
   .the-pit {
     width: 95%;
@@ -334,7 +301,6 @@ footer {
    margin-bottom: 40px;
   }
 }
-
 @media screen and (max-width: 480px) {
  .blog-posts__post-header h3 {
   width: 75%;
@@ -357,7 +323,6 @@ footer {
   width: 40%;
  }
 }
-
 @media screen and (max-width: 360px) {
  .blog-posts__post-header h3 {
   width: 70%;
