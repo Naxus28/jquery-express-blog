@@ -1,4 +1,10 @@
 const renderDash = context => {
+  if (!isAuthenticated(context)) {
+    context.redirect('/#/login');
+    return;
+  }
+
+
 	// http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
   context.app.swap('');
 
@@ -11,6 +17,6 @@ const renderDash = context => {
   context.render('../../templates/ui/top-bar.template').prependTo(context.$element());
   context.render('../../templates/ui/footer.template').appendTo(context.$element());
 
-	context.render('../../templates/partials/dashboard.template')
+	context.render('../../templates/partials/dashboard.template', {user: context.app.session('user')})
   	.appendTo('.the-pit');
 };

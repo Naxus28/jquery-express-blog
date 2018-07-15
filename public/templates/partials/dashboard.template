@@ -1,1 +1,6 @@
-dashboard	
+<div class="dashboard">
+  <div class="dashboard__user">
+    <p><%= user.email %></p> 
+    <p><%= user.role %></p>
+  </div>
+</div>

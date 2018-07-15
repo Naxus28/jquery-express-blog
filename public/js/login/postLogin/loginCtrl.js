@@ -31,18 +31,15 @@ const doLogin = context => {
     },
     data: JSON.stringify(data), // need to stringify to send as json
     success: res => {
-
-    	console.log('res: ', res);
-
+      // set jwt and authenticated session values
+      // sammy will attempt to store data in this order:
+      // 1. localStorage, 2. cookies, 3. memory (data is lost on page refresh)
+      // http://sammyjs.org/docs/api/0.7.4/all#Sammy.Session
+      
+      //TODO: encrypt jwt: var encriptedJwt = CryptoJS.AES.encrypt(res.jwt, res.clientSecret);
+      context.app.session('jwt', res.jwt);
+      context.app.session('user', res.user);
     	context.redirect('#/dashboard');
-			      
-      // interpolate the variables on the template
-      // and append to '.blog-posts' in submit-form.template
-      // previously loaded into the context 
-      // context
-      //   .render('../../templates/partials/posts.template', { post: updatedPost })
-      //   .prependTo('.blog-posts');
-
     },
     error: err => handleApiError(err, context)
   });

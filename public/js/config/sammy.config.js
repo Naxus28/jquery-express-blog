@@ -3,6 +3,7 @@ const sammyApp = (function($) {
   // create sammy app instance
   const app = $.sammy('#main', function() {
     this.use('Template');
+    this.use('Session');
   });
 
   // run the app on '#/'
