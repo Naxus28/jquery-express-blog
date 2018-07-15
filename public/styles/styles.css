@@ -26,7 +26,7 @@ body {
 .the-pit {
   flex: 1 0 auto; /* This is a shorthand property that sets flex-grow, flex-shrink, and flex-basis: https://developer.mozilla.org/en-US/docs/Web/CSS/flex*/
   width: 80%;
-  margin: auto;
+  margin: 92px auto 0;
   padding: 40px 20px;
 }
 footer {
@@ -36,8 +36,12 @@ footer {
   text-align: center;
   color: #f5f5f5;
 }
+.top-bar-wrapper {
+  position: fixed;
+  width: 100%;
+}
 .top-bar {
-  padding: 30px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
