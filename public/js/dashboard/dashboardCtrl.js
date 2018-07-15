@@ -4,7 +4,6 @@ const renderDash = context => {
     return;
   }
 
-
 	// http://sammyjs.org/docs/api/0.7.4/all#Sammy.Application-swap
   context.app.swap('');
 
