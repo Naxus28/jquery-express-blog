@@ -17,6 +17,4 @@ export default (req, res) => {
 	    	jwt: createJwt(req.user.email)
 	    });
 	  });
-
-
 };
