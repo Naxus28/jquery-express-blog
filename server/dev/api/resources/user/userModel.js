@@ -154,7 +154,8 @@ User.post('save', (err, user, next) => {
  * remove blog post dependencies (all posts associated with this user)
  * Note: There is no query hook for remove(), only for documents. 
  * If you set a 'remove' hook, it will be fired when you call myDoc.remove(), 
- * not when you call MyModel.remove(). Note: The create() function fires save() hooks.
+ * not when you call MyModel.remove(). 
+ * Note: The create() function fires save() hooks.
  */
 User.pre('remove', function(next) {
   BlogPost.remove({author: this._id}).exec();
