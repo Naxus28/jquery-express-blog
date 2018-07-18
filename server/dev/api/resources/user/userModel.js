@@ -60,8 +60,7 @@ const User = new Schema({
  * with increasing computation power.
  */
 
-// use 'function' instead of '=>' to prevent lexical binding 
-// and avoid losing access to 'this' 
+// use 'function' instead of '=>' to lexically bind 'this' with the function scope 
 User.methods = {
   verifyPassword: function(password) {
     // for async comparison use 'compare' and handle promise with '.then'
