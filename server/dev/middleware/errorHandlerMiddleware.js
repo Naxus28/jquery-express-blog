@@ -2,7 +2,7 @@
  * global error handler -- place it 
  * as the last function in the index file
  * just above the server listener
- * @param  {Object} an error object generated in any layer of the server
+ * @param  {Object} an error object generated on any layer of the server
  * @param  {Object} the request object
  * @param  {Object} the response object
  * @param  {Function} next
