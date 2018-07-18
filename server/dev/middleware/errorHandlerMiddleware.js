@@ -6,7 +6,7 @@
  * @param  {Object} the request object
  * @param  {Object} the response object
  * @param  {Function} next
- * @return {Function} a function that calls app.use for this middleware
+ * @return {undefined} 
  */
 const errorHandler = (err, req, res, next) => {
   const { status, name, message } = err;
