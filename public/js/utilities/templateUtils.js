@@ -43,7 +43,7 @@ const getUpdatePostForm = jqueryEvent => {
     author,
     authorId,
     content
-  } = getBlogPostTextFields(jqueryEvent, '.post-container');
+  } = getBlogPostTextFields(jqueryEvent);
 
   return`
     <div class="update-form">

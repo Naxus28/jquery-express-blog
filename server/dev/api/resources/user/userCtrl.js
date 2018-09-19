@@ -49,7 +49,7 @@ const getUsers = (req, res, next) => {
  * @return {undefined}       
  */
 const getUser = (req, res, next) => {
-  User.findOne({_id: req.params.id})
+  User.findOne({_id: req.params.id;})
     .select('-password') // removes password from returned query
     .populate('blogPosts')
     .exec((err, user) => {
